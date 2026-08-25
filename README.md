@@ -10,7 +10,7 @@ analysis, and evaluations.
 The result is not a list of commandments. It is a reviewable catalog of claims, each labelled by the
 strength of its evidence and linked to the work behind it.
 
-**Start with the [reader’s guide](https://beyond10x.github.io/agentic-principles/research/), or scan the
+**Start with the [reader’s guide](https://beyond10x.github.io/agentic-principles/research), or scan the
 [current principle catalog](https://beyond10x.github.io/agentic-principles/principles).**
 
 ## Current evidence posture

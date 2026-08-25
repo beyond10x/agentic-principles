@@ -102,7 +102,7 @@ export default function Home(): ReactNode {
                 <Link className={styles.primaryAction} to="/principles">
                   See what we know <span aria-hidden="true">↗</span>
                 </Link>
-                <Link className={styles.secondaryAction} to="/research/">
+                <Link className={styles.secondaryAction} to="/research">
                   Start with the reader’s guide
                 </Link>
               </div>
@@ -211,7 +211,7 @@ export default function Home(): ReactNode {
                 Read the question, competing explanations, source material, experiment,
                 limitations, and the evidence label in one navigable trail.
               </p>
-              <Link className={styles.primaryAction} to="/research/">
+              <Link className={styles.primaryAction} to="/research">
                 Browse the research <span aria-hidden="true">↗</span>
               </Link>
             </div>

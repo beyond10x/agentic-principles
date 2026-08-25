@@ -65,7 +65,7 @@ export default function Principles(): ReactNode {
               <p><strong>Revise</strong> when counterevidence changes its confidence, boundaries, or practical consequence.</p>
               <p><strong>Retire</strong> without erasing the record when it fails or a better explanation replaces it.</p>
             </div>
-            <Link className={styles.guideLink} to="/research/">
+            <Link className={styles.guideLink} to="/research">
               Read the complete reader’s guide →
             </Link>
           </div>

@@ -102,7 +102,7 @@ const config: Config = {
         {
           title: 'Explore',
           items: [
-            {label: 'Start here', to: '/research/'},
+            {label: 'Start here', to: '/research'},
             {label: 'Principle catalog', to: '/principles'},
             {label: 'Strongest current study', to: '/research/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure'},
             {label: 'Research method', to: '/research/VISION#the-research-loop'},
