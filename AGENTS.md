@@ -228,6 +228,34 @@ limitations and counterevidence are visible; and the next decision or experiment
 
 A document existing is not evidence that the research is complete.
 
+## Publication and releases
+
+The public repository and website are evidence surfaces. Publishing them must not weaken the privacy,
+provenance, or reproducibility rules above.
+
+Before a public release:
+
+1. Scan the complete Git history and the built static artifact for secrets. Confirm that no private
+   data, machine-local paths, unpublished credentials, or re-identification material is present.
+2. Confirm that `node_modules`, `build`, `dist`, coverage output, Docusaurus caches, and other generated
+   dependency trees have never entered the release history.
+3. Run `protocol schema validate` over every published schema instance, then run the website's
+   `schema:check`, `typecheck`, and production `build` scripts from a locked npm install.
+4. Review dependency-audit findings in context. Do not hide a residual advisory; record why its attack
+   surface is or is not reachable, gate unacceptable severity, and keep automated updates enabled.
+5. Update `CHANGELOG.md` and any release-facing claims in `README.md`. The changelog version, Git tag,
+   and GitHub release must agree exactly; this repository starts with `v0.1.0`.
+6. Push commits and tags using the bot identity wrapper supplied by
+   `https://github.com/beyond10x/atlas`. Do not encode a machine-specific cross-repository path in
+   repository files.
+7. Wait for the real GitHub Pages workflow, verify its conclusion and deployed URL, and make an HTTP
+   request to the public site. A local build alone is not publication evidence.
+
+The Pages workflow is the publication boundary. Keep repository contents read-only by default, grant
+`pages: write` and `id-token: write` only to the deploy job, pin actions to immutable revisions, do not
+persist checkout credentials, and do not run privileged deployment workflows on untrusted pull
+requests.
+
 ## Planning artifacts
 
 Plan items are markdown files under `.engineering/planning/<kind>/<slug>.md`: YAML frontmatter the
