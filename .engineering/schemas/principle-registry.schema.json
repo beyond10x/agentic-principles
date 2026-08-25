@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:beyond10x:agentic-principles:schema:registry:1",
+  "title": "Agentic Principles registry",
+  "description": "The version 1 registry consumed by the documentation website.",
+  "type": "object",
+  "required": ["schema", "updated", "principles"],
+  "properties": {
+    "schema": {
+      "const": "urn:beyond10x:agentic-principles:schema:registry:1"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "principles": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/principle"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "principle": {
+      "type": "object",
+      "required": ["id", "title", "maturity", "claim", "source", "sourceLabel", "themes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^AP-[0-9]{3,}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maturity": {
+          "enum": ["seed", "hypothesis", "candidate", "supported", "challenged", "revised", "retired"]
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "themes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          }
+        },
+        "featured": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

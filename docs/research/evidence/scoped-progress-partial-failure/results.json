@@ -1,0 +1,707 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:partial-failure-results:1",
+  "scenario_count": 12,
+  "results": [
+    {
+      "id": "research-remote-git",
+      "domain": "research",
+      "class": "beneficial",
+      "task_count": 6,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "validate_docs",
+            "validate_protocol",
+            "prepare_atlas_entry",
+            "inspect_remote",
+            "bot_commit",
+            "push"
+          ],
+          "completed_after_recovery": 6
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 6,
+          "outage_executions": [
+            "validate_docs",
+            "validate_protocol",
+            "prepare_atlas_entry"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "inspect_remote",
+            "bot_commit",
+            "push"
+          ],
+          "completed_after_recovery": 6
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 6,
+          "outage_executions": [
+            "validate_docs",
+            "validate_protocol",
+            "prepare_atlas_entry",
+            "inspect_remote",
+            "bot_commit",
+            "push"
+          ],
+          "invalid_executions": [
+            "inspect_remote",
+            "bot_commit",
+            "push"
+          ],
+          "rework_count": 3,
+          "recovery_decisions": [
+            "inspect_remote",
+            "bot_commit",
+            "push"
+          ],
+          "completed_after_recovery": 6
+        }
+      ]
+    },
+    {
+      "id": "factory-package-registry",
+      "domain": "software-factory",
+      "class": "beneficial",
+      "task_count": 5,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "lint",
+            "unit_tests",
+            "update_docs",
+            "integration_build",
+            "release"
+          ],
+          "completed_after_recovery": 5
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 6,
+          "outage_executions": [
+            "lint",
+            "unit_tests",
+            "update_docs"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "integration_build",
+            "release"
+          ],
+          "completed_after_recovery": 5
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 6,
+          "outage_executions": [
+            "lint",
+            "unit_tests",
+            "update_docs",
+            "integration_build",
+            "release"
+          ],
+          "invalid_executions": [
+            "integration_build",
+            "release"
+          ],
+          "rework_count": 2,
+          "recovery_decisions": [
+            "integration_build",
+            "release"
+          ],
+          "completed_after_recovery": 5
+        }
+      ]
+    },
+    {
+      "id": "sre-change-api",
+      "domain": "sre",
+      "class": "beneficial",
+      "task_count": 5,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "read_runbook",
+            "analyze_exported_snapshot",
+            "draft_hypotheses",
+            "refresh_telemetry",
+            "apply_mitigation"
+          ],
+          "completed_after_recovery": 5
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 7,
+          "outage_executions": [
+            "read_runbook",
+            "analyze_exported_snapshot",
+            "draft_hypotheses",
+            "refresh_telemetry"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "apply_mitigation"
+          ],
+          "completed_after_recovery": 5
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 7,
+          "outage_executions": [
+            "read_runbook",
+            "analyze_exported_snapshot",
+            "draft_hypotheses",
+            "refresh_telemetry",
+            "apply_mitigation"
+          ],
+          "invalid_executions": [
+            "apply_mitigation"
+          ],
+          "rework_count": 1,
+          "recovery_decisions": [
+            "apply_mitigation"
+          ],
+          "completed_after_recovery": 5
+        }
+      ]
+    },
+    {
+      "id": "support-outbound-messaging",
+      "domain": "customer-support",
+      "class": "beneficial",
+      "task_count": 5,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "read_case",
+            "classify_request",
+            "draft_response",
+            "update_case",
+            "send_response"
+          ],
+          "completed_after_recovery": 5
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 7,
+          "outage_executions": [
+            "read_case",
+            "classify_request",
+            "draft_response",
+            "update_case"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "send_response"
+          ],
+          "completed_after_recovery": 5
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 7,
+          "outage_executions": [
+            "read_case",
+            "classify_request",
+            "draft_response",
+            "update_case",
+            "send_response"
+          ],
+          "invalid_executions": [
+            "send_response"
+          ],
+          "rework_count": 1,
+          "recovery_decisions": [
+            "send_response"
+          ],
+          "completed_after_recovery": 5
+        }
+      ]
+    },
+    {
+      "id": "research-web-only",
+      "domain": "research",
+      "class": "all-blocked",
+      "task_count": 3,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "gather_sources",
+            "analyze_sources",
+            "synthesize"
+          ],
+          "completed_after_recovery": 3
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "gather_sources",
+            "analyze_sources",
+            "synthesize"
+          ],
+          "completed_after_recovery": 3
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [
+            "gather_sources",
+            "analyze_sources",
+            "synthesize"
+          ],
+          "invalid_executions": [
+            "gather_sources",
+            "analyze_sources",
+            "synthesize"
+          ],
+          "rework_count": 3,
+          "recovery_decisions": [
+            "gather_sources",
+            "analyze_sources",
+            "synthesize"
+          ],
+          "completed_after_recovery": 3
+        }
+      ]
+    },
+    {
+      "id": "factory-source-forge",
+      "domain": "software-factory",
+      "class": "all-blocked",
+      "task_count": 4,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "fetch_source",
+            "build",
+            "test",
+            "release"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "fetch_source",
+            "build",
+            "test",
+            "release"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [
+            "fetch_source",
+            "build",
+            "test",
+            "release"
+          ],
+          "invalid_executions": [
+            "fetch_source",
+            "build",
+            "test",
+            "release"
+          ],
+          "rework_count": 4,
+          "recovery_decisions": [
+            "fetch_source",
+            "build",
+            "test",
+            "release"
+          ],
+          "completed_after_recovery": 4
+        }
+      ]
+    },
+    {
+      "id": "sre-live-telemetry",
+      "domain": "sre",
+      "class": "all-blocked",
+      "task_count": 4,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "retrieve_live_state",
+            "diagnose",
+            "choose_mitigation",
+            "apply_mitigation"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "retrieve_live_state",
+            "diagnose",
+            "choose_mitigation",
+            "apply_mitigation"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [
+            "retrieve_live_state",
+            "diagnose",
+            "choose_mitigation",
+            "apply_mitigation"
+          ],
+          "invalid_executions": [
+            "retrieve_live_state",
+            "diagnose",
+            "choose_mitigation",
+            "apply_mitigation"
+          ],
+          "rework_count": 4,
+          "recovery_decisions": [
+            "retrieve_live_state",
+            "diagnose",
+            "choose_mitigation",
+            "apply_mitigation"
+          ],
+          "completed_after_recovery": 4
+        }
+      ]
+    },
+    {
+      "id": "support-account-state",
+      "domain": "customer-support",
+      "class": "all-blocked",
+      "task_count": 4,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "load_account",
+            "decide_resolution",
+            "update_account",
+            "notify_customer"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "load_account",
+            "decide_resolution",
+            "update_account",
+            "notify_customer"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 0,
+          "outage_executions": [
+            "load_account",
+            "decide_resolution",
+            "update_account",
+            "notify_customer"
+          ],
+          "invalid_executions": [
+            "load_account",
+            "decide_resolution",
+            "update_account",
+            "notify_customer"
+          ],
+          "rework_count": 4,
+          "recovery_decisions": [
+            "load_account",
+            "decide_resolution",
+            "update_account",
+            "notify_customer"
+          ],
+          "completed_after_recovery": 4
+        }
+      ]
+    },
+    {
+      "id": "sre-observability-barrier",
+      "domain": "sre",
+      "class": "safety-boundary",
+      "task_count": 4,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "read_runbook",
+            "prepare_query",
+            "apply_change",
+            "verify_change"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 2,
+          "outage_executions": [
+            "read_runbook",
+            "prepare_query"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "apply_change",
+            "verify_change"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 2,
+          "outage_executions": [
+            "read_runbook",
+            "prepare_query",
+            "apply_change",
+            "verify_change"
+          ],
+          "invalid_executions": [
+            "apply_change",
+            "verify_change"
+          ],
+          "rework_count": 2,
+          "recovery_decisions": [
+            "apply_change",
+            "verify_change"
+          ],
+          "completed_after_recovery": 4
+        }
+      ]
+    },
+    {
+      "id": "support-authorization-barrier",
+      "domain": "customer-support",
+      "class": "safety-boundary",
+      "task_count": 3,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "draft_generic_steps",
+            "issue_refund",
+            "notify_customer"
+          ],
+          "completed_after_recovery": 3
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 1,
+          "outage_executions": [
+            "draft_generic_steps"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "issue_refund",
+            "notify_customer"
+          ],
+          "completed_after_recovery": 3
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 1,
+          "outage_executions": [
+            "draft_generic_steps",
+            "issue_refund",
+            "notify_customer"
+          ],
+          "invalid_executions": [
+            "issue_refund",
+            "notify_customer"
+          ],
+          "rework_count": 2,
+          "recovery_decisions": [
+            "issue_refund",
+            "notify_customer"
+          ],
+          "completed_after_recovery": 3
+        }
+      ]
+    },
+    {
+      "id": "factory-provenance-barrier",
+      "domain": "software-factory",
+      "class": "safety-boundary",
+      "task_count": 4,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "review_local_diff",
+            "draft_release_notes",
+            "sign_artifact",
+            "publish"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 3,
+          "outage_executions": [
+            "review_local_diff",
+            "draft_release_notes"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "sign_artifact",
+            "publish"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 3,
+          "outage_executions": [
+            "review_local_diff",
+            "draft_release_notes",
+            "sign_artifact",
+            "publish"
+          ],
+          "invalid_executions": [
+            "sign_artifact",
+            "publish"
+          ],
+          "rework_count": 2,
+          "recovery_decisions": [
+            "sign_artifact",
+            "publish"
+          ],
+          "completed_after_recovery": 4
+        }
+      ]
+    },
+    {
+      "id": "research-freshness-barrier",
+      "domain": "research",
+      "class": "safety-boundary",
+      "task_count": 4,
+      "policies": [
+        {
+          "policy": "global-halt",
+          "outage_useful_weight": 0,
+          "outage_executions": [],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "organize_existing_sources",
+            "draft_search_queries",
+            "verify_current_claim",
+            "publish_synthesis"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "scoped-continuation",
+          "outage_useful_weight": 2,
+          "outage_executions": [
+            "organize_existing_sources",
+            "draft_search_queries"
+          ],
+          "invalid_executions": [],
+          "rework_count": 0,
+          "recovery_decisions": [
+            "verify_current_claim",
+            "publish_synthesis"
+          ],
+          "completed_after_recovery": 4
+        },
+        {
+          "policy": "naive-continuation",
+          "outage_useful_weight": 2,
+          "outage_executions": [
+            "organize_existing_sources",
+            "draft_search_queries",
+            "verify_current_claim",
+            "publish_synthesis"
+          ],
+          "invalid_executions": [
+            "verify_current_claim",
+            "publish_synthesis"
+          ],
+          "rework_count": 2,
+          "recovery_decisions": [
+            "verify_current_claim",
+            "publish_synthesis"
+          ],
+          "completed_after_recovery": 4
+        }
+      ]
+    }
+  ]
+}

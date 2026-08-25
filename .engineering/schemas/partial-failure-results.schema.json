@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:beyond10x:agentic-principles:schema:partial-failure-results:1",
+  "title": "Partial-failure experiment results",
+  "description": "Deterministic outputs for each policy evaluated against each task graph.",
+  "type": "object",
+  "required": ["schema", "scenario_count", "results"],
+  "properties": {
+    "schema": {
+      "const": "urn:beyond10x:agentic-principles:schema:partial-failure-results:1"
+    },
+    "scenario_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/scenarioResult"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(?:-[a-z0-9_]+)*$"
+    },
+    "identifierList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/identifier"}
+    },
+    "policyResult": {
+      "type": "object",
+      "required": [
+        "policy",
+        "outage_useful_weight",
+        "outage_executions",
+        "invalid_executions",
+        "rework_count",
+        "recovery_decisions",
+        "completed_after_recovery"
+      ],
+      "properties": {
+        "policy": {
+          "enum": ["global-halt", "scoped-continuation", "naive-continuation"]
+        },
+        "outage_useful_weight": {"type": "integer", "minimum": 0},
+        "outage_executions": {"$ref": "#/$defs/identifierList"},
+        "invalid_executions": {"$ref": "#/$defs/identifierList"},
+        "rework_count": {"type": "integer", "minimum": 0},
+        "recovery_decisions": {"$ref": "#/$defs/identifierList"},
+        "completed_after_recovery": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "scenarioResult": {
+      "type": "object",
+      "required": ["id", "domain", "class", "task_count", "policies"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "domain": {
+          "enum": ["research", "software-factory", "sre", "customer-support"]
+        },
+        "class": {
+          "enum": ["beneficial", "all-blocked", "safety-boundary"]
+        },
+        "task_count": {"type": "integer", "minimum": 1},
+        "policies": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/policyResult"},
+          "allOf": [
+            {"contains": {"type": "object", "properties": {"policy": {"const": "global-halt"}}, "required": ["policy"]}},
+            {"contains": {"type": "object", "properties": {"policy": {"const": "scoped-continuation"}}, "required": ["policy"]}},
+            {"contains": {"type": "object", "properties": {"policy": {"const": "naive-continuation"}}, "required": ["policy"]}}
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

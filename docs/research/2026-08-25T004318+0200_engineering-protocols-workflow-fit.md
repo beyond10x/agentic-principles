@@ -26,7 +26,7 @@ predicate over facts with richer requirements; states carry phases, requirements
 reversibility, and failure policy. Principles attach obligations to phases rather than hard-coding
 state names. Construction rejects missing states, dead ends, unreachable states, and rollback on an
 irreversible state.
-([workflow model, lines 1–37 and 81–168](../../../engineering-protocols/crates/aep-domain/src/workflow.rs))
+([workflow model, lines 1–37 and 81–168](https://github.com/beyond10x/engineering-protocols/blob/8e3f1d5ad6923f859406742a38c0d08497d0484a/crates/aep-domain/src/workflow.rs))
 
 This directly fits the parts of the VISION loop that need control: do not interpret before framing,
 do not collect before operationalizing, do not synthesize before challenge, and do not hand a result
@@ -61,7 +61,7 @@ status moves go only through the CLI and remain operator decisions.
 
 Observed defect: `protocol artifact` discovers the store through `.engineering/project.yaml`, but its
 document `root` independently defaults to `.` and lifecycle loading reads that root directly
-([planning CLI, lines 52–63 and 89–116](../../../engineering-protocols/crates/protocol-cli/src/planning.rs)).
+([planning CLI, lines 52–63 and 89–116](https://github.com/beyond10x/engineering-protocols/blob/8e3f1d5ad6923f859406742a38c0d08497d0484a/crates/protocol-cli/src/planning.rs)).
 With only a sibling pointer, `protocol artifact lifecycle story` reported a permissive lifecycle in
 which every status could move to every other status. That is unsafe because omission of an optional
 flag removes governance without failing.
@@ -70,7 +70,7 @@ The adopted mitigation is a repository-local vendored tree. Its identity is not 
 `.engineering/protocol-source.yaml` records the global URN, canonical Git URL, and exact commit. The
 default root now loads constrained lifecycles. This also follows the adoption guide's rule that a new
 workflow means owning a document tree rather than trying to overlay a workflow through a project
-pointer ([adoption guide, lines 111–166](../../../engineering-protocols/docs/guide/adopting.md)).
+pointer ([adoption guide, lines 111–166](https://github.com/beyond10x/engineering-protocols/blob/8e3f1d5ad6923f859406742a38c0d08497d0484a/docs/guide/adopting.md)).
 
 ### Structural application is possible now; executable adoption is not yet established
 
@@ -84,10 +84,10 @@ That result proves document and graph validity only. It does not yet prove runti
 - The AEP evidence vocabulary is a closed enum of engineering and operations evidence kinds; it has
   generic `artifact`, `review`, and `verification`, but no first-class literature source, transcript
   coding, experiment result, replication, or product-trial evidence
-  ([evidence kinds, lines 1177–1251](../../../engineering-protocols/crates/aep-domain/src/evidence.rs)).
+  ([evidence kinds, lines 1177–1251](https://github.com/beyond10x/engineering-protocols/blob/8e3f1d5ad6923f859406742a38c0d08497d0484a/crates/aep-domain/src/evidence.rs)).
 - A requirement can constrain evidence by count, subject, verifier, independence, and horizon, which is
   a strong fit for scientific provenance and independent challenge
-  ([requirements, lines 194–235](../../../engineering-protocols/crates/aep-domain/src/requirement.rs)).
+  ([requirements, lines 194–235](https://github.com/beyond10x/engineering-protocols/blob/8e3f1d5ad6923f859406742a38c0d08497d0484a/crates/aep-domain/src/requirement.rs)).
   The missing part is research-specific meaning and projection, not the requirement mechanism.
 - There is no `research.standard` profile, representative research task, research principle set, or
   driver step map.

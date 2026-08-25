@@ -4,7 +4,8 @@ version: aep.project/1
 # protocol engine materializes it in its cache; this repository carries no checkout path.
 protocol: adp/1
 profile: development.standard
-protocols: git+ssh://git@github.com/beyond10x/engineering-protocols.git#8e3f1d5ad6923f859406742a38c0d08497d0484a
+protocols: git+ssh://git@github.com/beyond10x/engineering-protocols.git#79b641c9c75411627669dfce7f0bac04d4472463
+schemas: schemas
 
 summary: >-
   Research and synthesis of evidence-backed principles for safe and efficient agentic work

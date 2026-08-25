@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0d2c38"/>
+      <stop offset="1" stop-color="#071722"/>
+    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0v44" fill="none" stroke="#fff" stroke-opacity=".04"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M820 470 940 250l70 130 100-190" fill="none" stroke="#23c5b5" stroke-linecap="round" stroke-width="15"/>
+  <circle cx="820" cy="470" r="17" fill="#f2ad4f"/>
+  <circle cx="1110" cy="190" r="17" fill="#f2ad4f"/>
+  <text x="88" y="122" fill="#f2ad4f" font-family="monospace" font-size="23" font-weight="700" letter-spacing="4">RESEARCH BEFORE REACH</text>
+  <text x="88" y="270" fill="#f6f4ec" font-family="Arial, sans-serif" font-size="76" font-weight="650">Agentic</text>
+  <text x="88" y="355" fill="#f6f4ec" font-family="Arial, sans-serif" font-size="76" font-weight="650">Principles</text>
+  <text x="91" y="438" fill="#a7b3b5" font-family="Arial, sans-serif" font-size="29">Evidence for agents that do real work.</text>
+</svg>

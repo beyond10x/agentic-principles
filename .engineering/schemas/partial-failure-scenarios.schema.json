@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:beyond10x:agentic-principles:schema:partial-failure-scenarios:1",
+  "title": "Partial-failure experiment scenarios",
+  "description": "Input task graphs for comparing continuation policies during capability outages.",
+  "type": "object",
+  "required": ["schema", "created", "scenarios"],
+  "properties": {
+    "schema": {
+      "const": "urn:beyond10x:agentic-principles:schema:partial-failure-scenarios:1"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/scenario"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(?:-[a-z0-9_]+)*$"
+    },
+    "capabilityList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/identifier"}
+    },
+    "task": {
+      "type": "object",
+      "required": ["id", "deps", "capabilities", "weight"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "deps": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/identifier"}
+        },
+        "capabilities": {"$ref": "#/$defs/capabilityList"},
+        "declared_capabilities": {"$ref": "#/$defs/capabilityList"},
+        "weight": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "wait_for_recovery": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declared_wait_for_recovery": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenario": {
+      "type": "object",
+      "required": ["id", "domain", "class", "outage_capabilities", "tasks"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "domain": {
+          "enum": ["research", "software-factory", "sre", "customer-support"]
+        },
+        "class": {
+          "enum": ["beneficial", "all-blocked", "safety-boundary"]
+        },
+        "outage_capabilities": {"$ref": "#/$defs/capabilityList"},
+        "tasks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/task"}
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

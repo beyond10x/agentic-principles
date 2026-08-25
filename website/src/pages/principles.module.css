@@ -1,0 +1,134 @@
+.header {
+  position: relative;
+  padding: clamp(5rem, 10vw, 9rem) 0 5rem;
+  overflow: hidden;
+  color: #f6f4ec;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(14, 196, 172, 0.16), transparent 35%),
+    var(--ap-ink);
+}
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--ap-accent);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  max-width: 10ch;
+  margin: 0;
+  color: #f6f4ec;
+  font-size: clamp(3.4rem, 8vw, 7.5rem);
+  font-weight: 610;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+}
+
+.lede {
+  max-width: 48rem;
+  margin: 2rem 0 0;
+  color: rgba(246, 244, 236, 0.65);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 48rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(246, 244, 236, 0.14);
+}
+
+.summary div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1rem 0 0;
+}
+
+.summary strong {
+  color: #fff;
+  font-family: var(--ap-serif);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.summary span {
+  color: rgba(246, 244, 236, 0.45);
+  font-size: 0.7rem;
+}
+
+.catalog {
+  padding: 4rem 0 7rem;
+  background: var(--ap-surface);
+}
+
+.catalogTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  color: var(--ap-muted);
+  border-bottom: 1px solid var(--ap-line);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.67rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.catalogTop p {
+  margin: 0;
+}
+
+.lifecycle {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  background: var(--ap-paper);
+}
+
+.lifecycle .eyebrow {
+  color: var(--ap-kicker);
+}
+
+.lifecycle h2 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 5vw, 4.7rem);
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.lifecycleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.lifecycleGrid p {
+  margin: 0;
+  color: var(--ap-text-soft);
+  line-height: 1.7;
+}
+
+.lifecycleGrid strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+@media screen and (max-width: 700px) {
+  .summary,
+  .lifecycleGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .catalogTop {
+    flex-direction: column;
+  }
+}

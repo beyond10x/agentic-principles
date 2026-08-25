@@ -1,0 +1,38 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:partial-failure-challenge-results:1",
+  "challenge_count": 4,
+  "results": [
+    {
+      "id": "hidden-observability-dependency",
+      "domain": "sre",
+      "invalid_executions": [
+        "apply_change"
+      ],
+      "outage_useful_weight": 1
+    },
+    {
+      "id": "hidden-authorization-dependency",
+      "domain": "customer-support",
+      "invalid_executions": [
+        "issue_refund"
+      ],
+      "outage_useful_weight": 1
+    },
+    {
+      "id": "hidden-provenance-dependency",
+      "domain": "software-factory",
+      "invalid_executions": [
+        "sign_artifact"
+      ],
+      "outage_useful_weight": 2
+    },
+    {
+      "id": "hidden-freshness-dependency",
+      "domain": "research",
+      "invalid_executions": [
+        "verify_current_claim"
+      ],
+      "outage_useful_weight": 1
+    }
+  ]
+}

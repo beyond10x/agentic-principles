@@ -1,0 +1,146 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-height: 18rem;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--ap-line);
+  border-radius: 1.25rem;
+  background: var(--ap-card);
+  box-shadow: var(--ap-shadow-soft);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.card::after {
+  position: absolute;
+  inset: auto -3rem -4rem auto;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 999px;
+  background: var(--ap-glow);
+  content: '';
+  filter: blur(1px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--ap-shadow);
+  transform: translateY(-3px);
+}
+
+.meta,
+.footer,
+.tags {
+  display: flex;
+  align-items: center;
+}
+
+.meta {
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.id {
+  color: var(--ap-muted);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.maturity {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.seed {
+  color: var(--ap-seed);
+}
+
+.hypothesis {
+  color: var(--ap-hypothesis);
+}
+
+.candidate {
+  color: var(--ap-candidate);
+}
+
+.supported {
+  color: var(--ap-supported);
+}
+
+.title {
+  margin: 1.25rem 0 0.75rem;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  letter-spacing: -0.025em;
+}
+
+.claim {
+  flex: 1;
+  color: var(--ap-text-soft);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.footer {
+  z-index: 1;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.tags {
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tags span {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  color: var(--ap-muted);
+  background: var(--ap-chip);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.link {
+  color: var(--ifm-font-color-base);
+  font-size: 0.82rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}

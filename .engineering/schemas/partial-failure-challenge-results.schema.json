@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:beyond10x:agentic-principles:schema:partial-failure-challenge-results:1",
+  "title": "Partial-failure annotation challenge results",
+  "description": "Outputs showing invalid executions caused by incomplete dependency declarations.",
+  "type": "object",
+  "required": ["schema", "challenge_count", "results"],
+  "properties": {
+    "schema": {
+      "const": "urn:beyond10x:agentic-principles:schema:partial-failure-challenge-results:1"
+    },
+    "challenge_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/result"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(?:-[a-z0-9_]+)*$"
+    },
+    "result": {
+      "type": "object",
+      "required": ["id", "domain", "invalid_executions", "outage_useful_weight"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "domain": {
+          "enum": ["research", "software-factory", "sre", "customer-support"]
+        },
+        "invalid_executions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/identifier"}
+        },
+        "outage_useful_weight": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

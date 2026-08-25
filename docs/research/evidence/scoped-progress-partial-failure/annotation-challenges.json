@@ -1,0 +1,46 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:partial-failure-annotation-challenges:1",
+  "created": "2026-08-25T02:30:00+02:00",
+  "scenarios": [
+    {
+      "id": "hidden-observability-dependency",
+      "domain": "sre",
+      "class": "annotation-challenge",
+      "outage_capabilities": ["telemetry"],
+      "tasks": [
+        {"id": "prepare_query", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "apply_change", "deps": ["prepare_query"], "capabilities": ["change_api", "telemetry"], "declared_capabilities": ["change_api"], "weight": 4, "wait_for_recovery": "fresh observability required", "declared_wait_for_recovery": false}
+      ]
+    },
+    {
+      "id": "hidden-authorization-dependency",
+      "domain": "customer-support",
+      "class": "annotation-challenge",
+      "outage_capabilities": ["authorization"],
+      "tasks": [
+        {"id": "draft_steps", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "issue_refund", "deps": ["draft_steps"], "capabilities": ["authorization", "payments"], "declared_capabilities": ["payments"], "weight": 4}
+      ]
+    },
+    {
+      "id": "hidden-provenance-dependency",
+      "domain": "software-factory",
+      "class": "annotation-challenge",
+      "outage_capabilities": ["provenance"],
+      "tasks": [
+        {"id": "review_diff", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "sign_artifact", "deps": ["review_diff"], "capabilities": ["provenance", "signing"], "declared_capabilities": ["signing"], "weight": 3}
+      ]
+    },
+    {
+      "id": "hidden-freshness-dependency",
+      "domain": "research",
+      "class": "annotation-challenge",
+      "outage_capabilities": ["web"],
+      "tasks": [
+        {"id": "draft_queries", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "verify_current_claim", "deps": ["draft_queries"], "capabilities": ["web"], "declared_capabilities": ["local"], "weight": 3, "wait_for_recovery": "current source required", "declared_wait_for_recovery": false}
+      ]
+    }
+  ]
+}

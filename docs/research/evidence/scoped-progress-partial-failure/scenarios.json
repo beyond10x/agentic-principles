@@ -1,0 +1,153 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:partial-failure-scenarios:1",
+  "created": "2026-08-25T02:30:00+02:00",
+  "scenarios": [
+    {
+      "id": "research-remote-git",
+      "domain": "research",
+      "class": "beneficial",
+      "outage_capabilities": ["internet", "remote_git"],
+      "tasks": [
+        {"id": "validate_docs", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "validate_protocol", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "prepare_atlas_entry", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "inspect_remote", "deps": [], "capabilities": ["internet"], "weight": 1},
+        {"id": "bot_commit", "deps": ["validate_docs", "validate_protocol"], "capabilities": ["internet"], "weight": 2},
+        {"id": "push", "deps": ["bot_commit"], "capabilities": ["remote_git"], "weight": 3}
+      ]
+    },
+    {
+      "id": "factory-package-registry",
+      "domain": "software-factory",
+      "class": "beneficial",
+      "outage_capabilities": ["package_registry"],
+      "tasks": [
+        {"id": "lint", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "unit_tests", "deps": [], "capabilities": ["local"], "weight": 3},
+        {"id": "update_docs", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "integration_build", "deps": ["unit_tests"], "capabilities": ["package_registry"], "weight": 3},
+        {"id": "release", "deps": ["lint", "update_docs", "integration_build"], "capabilities": ["package_registry"], "weight": 4}
+      ]
+    },
+    {
+      "id": "sre-change-api",
+      "domain": "sre",
+      "class": "beneficial",
+      "outage_capabilities": ["change_api"],
+      "tasks": [
+        {"id": "read_runbook", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "analyze_exported_snapshot", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "draft_hypotheses", "deps": ["read_runbook", "analyze_exported_snapshot"], "capabilities": ["local"], "weight": 2},
+        {"id": "refresh_telemetry", "deps": [], "capabilities": ["telemetry"], "weight": 2},
+        {"id": "apply_mitigation", "deps": ["draft_hypotheses", "refresh_telemetry"], "capabilities": ["change_api"], "weight": 4}
+      ]
+    },
+    {
+      "id": "support-outbound-messaging",
+      "domain": "customer-support",
+      "class": "beneficial",
+      "outage_capabilities": ["outbound_messaging"],
+      "tasks": [
+        {"id": "read_case", "deps": [], "capabilities": ["crm"], "weight": 2},
+        {"id": "classify_request", "deps": ["read_case"], "capabilities": ["local"], "weight": 1},
+        {"id": "draft_response", "deps": ["classify_request"], "capabilities": ["local"], "weight": 2},
+        {"id": "update_case", "deps": ["classify_request"], "capabilities": ["crm"], "weight": 2},
+        {"id": "send_response", "deps": ["draft_response", "update_case"], "capabilities": ["outbound_messaging"], "weight": 3}
+      ]
+    },
+    {
+      "id": "research-web-only",
+      "domain": "research",
+      "class": "all-blocked",
+      "outage_capabilities": ["web"],
+      "tasks": [
+        {"id": "gather_sources", "deps": [], "capabilities": ["web"], "weight": 3},
+        {"id": "analyze_sources", "deps": ["gather_sources"], "capabilities": ["local"], "weight": 2},
+        {"id": "synthesize", "deps": ["analyze_sources"], "capabilities": ["local"], "weight": 2}
+      ]
+    },
+    {
+      "id": "factory-source-forge",
+      "domain": "software-factory",
+      "class": "all-blocked",
+      "outage_capabilities": ["source_forge"],
+      "tasks": [
+        {"id": "fetch_source", "deps": [], "capabilities": ["source_forge"], "weight": 2},
+        {"id": "build", "deps": ["fetch_source"], "capabilities": ["local"], "weight": 3},
+        {"id": "test", "deps": ["build"], "capabilities": ["local"], "weight": 3},
+        {"id": "release", "deps": ["test"], "capabilities": ["source_forge"], "weight": 4}
+      ]
+    },
+    {
+      "id": "sre-live-telemetry",
+      "domain": "sre",
+      "class": "all-blocked",
+      "outage_capabilities": ["telemetry"],
+      "tasks": [
+        {"id": "retrieve_live_state", "deps": [], "capabilities": ["telemetry"], "weight": 3},
+        {"id": "diagnose", "deps": ["retrieve_live_state"], "capabilities": ["local"], "weight": 3},
+        {"id": "choose_mitigation", "deps": ["diagnose"], "capabilities": ["local"], "weight": 2},
+        {"id": "apply_mitigation", "deps": ["choose_mitigation"], "capabilities": ["change_api"], "weight": 4}
+      ]
+    },
+    {
+      "id": "support-account-state",
+      "domain": "customer-support",
+      "class": "all-blocked",
+      "outage_capabilities": ["crm"],
+      "tasks": [
+        {"id": "load_account", "deps": [], "capabilities": ["crm"], "weight": 3},
+        {"id": "decide_resolution", "deps": ["load_account"], "capabilities": ["local"], "weight": 2},
+        {"id": "update_account", "deps": ["decide_resolution"], "capabilities": ["crm"], "weight": 3},
+        {"id": "notify_customer", "deps": ["update_account"], "capabilities": ["outbound_messaging"], "weight": 2}
+      ]
+    },
+    {
+      "id": "sre-observability-barrier",
+      "domain": "sre",
+      "class": "safety-boundary",
+      "outage_capabilities": ["telemetry"],
+      "tasks": [
+        {"id": "read_runbook", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "prepare_query", "deps": ["read_runbook"], "capabilities": ["local"], "weight": 1},
+        {"id": "apply_change", "deps": ["prepare_query"], "capabilities": ["change_api", "telemetry"], "weight": 4, "wait_for_recovery": "fresh observability required before mutation"},
+        {"id": "verify_change", "deps": ["apply_change"], "capabilities": ["telemetry"], "weight": 3}
+      ]
+    },
+    {
+      "id": "support-authorization-barrier",
+      "domain": "customer-support",
+      "class": "safety-boundary",
+      "outage_capabilities": ["authorization"],
+      "tasks": [
+        {"id": "draft_generic_steps", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "issue_refund", "deps": ["draft_generic_steps"], "capabilities": ["authorization", "payments"], "weight": 4},
+        {"id": "notify_customer", "deps": ["issue_refund"], "capabilities": ["outbound_messaging"], "weight": 2}
+      ]
+    },
+    {
+      "id": "factory-provenance-barrier",
+      "domain": "software-factory",
+      "class": "safety-boundary",
+      "outage_capabilities": ["provenance"],
+      "tasks": [
+        {"id": "review_local_diff", "deps": [], "capabilities": ["local"], "weight": 2},
+        {"id": "draft_release_notes", "deps": ["review_local_diff"], "capabilities": ["local"], "weight": 1},
+        {"id": "sign_artifact", "deps": ["review_local_diff"], "capabilities": ["provenance", "signing"], "weight": 3},
+        {"id": "publish", "deps": ["draft_release_notes", "sign_artifact"], "capabilities": ["registry"], "weight": 4}
+      ]
+    },
+    {
+      "id": "research-freshness-barrier",
+      "domain": "research",
+      "class": "safety-boundary",
+      "outage_capabilities": ["web"],
+      "tasks": [
+        {"id": "organize_existing_sources", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "draft_search_queries", "deps": [], "capabilities": ["local"], "weight": 1},
+        {"id": "verify_current_claim", "deps": ["draft_search_queries"], "capabilities": ["web"], "weight": 3, "wait_for_recovery": "current source required"},
+        {"id": "publish_synthesis", "deps": ["organize_existing_sources", "verify_current_claim"], "capabilities": ["local"], "weight": 3}
+      ]
+    }
+  ]
+}

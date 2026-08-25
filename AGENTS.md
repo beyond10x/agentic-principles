@@ -255,8 +255,8 @@ Before the first planning-store write of a session, run `protocol artifact list`
 
 1. **A status changes only through `protocol artifact move`.** Never edit `status:` directly. The
    CLI validates the move against the kind's lifecycle.
-2. **Edit only the body directly.** Patch below the closing `---`; do not rewrite machine-owned
-   frontmatter. Use `protocol artifact relate` for relations.
+2. **Never edit a planning-store file directly.** Use `protocol artifact new` for creation,
+   `relate` for relations, `move` for status, and `body <id> --from <path|->` for prose.
 3. **After a batch, run `protocol artifact validate` and relay its output verbatim.** It accumulates
    defects and its detailed output is the useful result.
 4. **A refusal is an answer.** Relay the legal moves the CLI names. Do not route around a refusal or
@@ -264,9 +264,20 @@ Before the first planning-store write of a session, run `protocol artifact list`
 5. **An already-satisfied or actively wrong request still gets an artifact.** Record the finding and
    its evidence, plus the actual gap if one exists, instead of leaving only a conversational decline.
 
-New artifacts start in the lifecycle's initial state. Creating an artifact and editing its body are
-reversible and need no confirmation beyond the request that prompted them. Lifecycle moves are claims
-about project state: propose them and wait for the operator, unless the operator already requested the
-specific move. Never infer a bulk move.
+New artifacts start in the lifecycle's initial state. Creating an artifact and replacing its body
+through the CLI are reversible and need no confirmation beyond the request that prompted them.
+Lifecycle moves are claims about project state: propose them and wait for the operator, unless the
+operator already requested the specific move. Never infer a bulk move.
 
 `protocol` must be on `PATH`. If it is absent, do not improvise machine-owned frontmatter.
+
+## Project schema contracts
+
+`.engineering/project.yaml` names the project-owned JSON Schema registry; its `schemas: schemas`
+entry resolves to `.engineering/schemas`. JSON Schema is the only authored runtime contract. Each
+schema's absolute `$id` is its identity and instances select it with `schema`.
+
+Use `protocol schema validate` for structural validation and `protocol schema typescript` for a
+deterministic consumer projection. Do not add repository-local validators or handwritten copies of
+generated types. The repository skill at `.agents/skills/schema-contracts/SKILL.md` carries the full
+workflow.

@@ -1,0 +1,82 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:transcript-coding:1",
+  "created": "2026-08-25T02:30:00+02:00",
+  "source": {
+    "kind": "authorized_current_session",
+    "date": "2026-08-25",
+    "timezone": "Europe/Berlin",
+    "stable_run_id": null,
+    "limitation": "The interface exposed no stable run identifier or per-turn timestamps; ordering is preserved but elapsed-time claims are excluded."
+  },
+  "coding_point": "The assistant's first run-wide yield after diagnosing the Internet outage.",
+  "actions": [
+    {
+      "action": "validate planning artifacts",
+      "classification": "safe_independent",
+      "required_capabilities": ["local_files", "protocol_cli"],
+      "eventual_outcome": "completed_before_connectivity_restoration"
+    },
+    {
+      "action": "validate research workflow tree",
+      "classification": "safe_independent",
+      "required_capabilities": ["local_files", "protocol_cli"],
+      "eventual_outcome": "completed_before_connectivity_restoration"
+    },
+    {
+      "action": "write and stage Atlas daily log",
+      "classification": "safe_independent",
+      "required_capabilities": ["local_files", "git_index"],
+      "eventual_outcome": "completed_before_connectivity_restoration"
+    },
+    {
+      "action": "run repository Markdown checks",
+      "classification": "safe_independent",
+      "required_capabilities": ["local_files", "python"],
+      "eventual_outcome": "completed_before_connectivity_restoration"
+    },
+    {
+      "action": "create agentic-principles bot commit",
+      "classification": "blocked_by_unavailable_capability",
+      "required_capabilities": ["github_api_for_bot_wrapper"],
+      "eventual_outcome": "completed_after_connectivity_restoration"
+    },
+    {
+      "action": "push agentic-principles",
+      "classification": "blocked_by_unavailable_capability",
+      "required_capabilities": ["github_api", "github_git_transport"],
+      "eventual_outcome": "completed_after_connectivity_restoration"
+    },
+    {
+      "action": "create Atlas bot commit",
+      "classification": "blocked_by_unavailable_capability",
+      "required_capabilities": ["github_api_for_bot_wrapper"],
+      "eventual_outcome": "completed_after_connectivity_restoration"
+    },
+    {
+      "action": "push Atlas and verify remote state",
+      "classification": "blocked_by_unavailable_capability",
+      "required_capabilities": ["github_api", "github_git_transport"],
+      "eventual_outcome": "completed_after_connectivity_restoration"
+    },
+    {
+      "action": "create private GitHub repository",
+      "classification": "already_complete",
+      "required_capabilities": ["github_api"],
+      "eventual_outcome": "completed_before_outage"
+    },
+    {
+      "action": "stage initial agentic-principles tree",
+      "classification": "already_complete",
+      "required_capabilities": ["local_files", "git_index"],
+      "eventual_outcome": "completed_before_outage"
+    }
+  ],
+  "observed_result": {
+    "safe_independent_actions_at_yield": 4,
+    "safe_independent_actions_later_completed_during_outage": 4,
+    "blocked_actions_at_yield": 4,
+    "blocked_actions_attempted_during_outage": 0,
+    "invalid_external_effects_observed": 0,
+    "operator_intervention_required_to_resume_safe_work": true
+  }
+}

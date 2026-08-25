@@ -1,0 +1,141 @@
+import {themes as prismThemes} from 'prism-react-renderer';
+import type {Config} from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
+import principleDataPlugin from './plugins/principle-data/index';
+
+const config: Config = {
+  title: 'Agentic Principles',
+  tagline: 'Evidence for safe, efficient agentic work',
+  favicon: 'img/favicon.svg',
+
+  future: {
+    v4: true,
+  },
+
+  url: 'https://beyond10x.github.io',
+  baseUrl: '/agentic-principles/',
+  organizationName: 'beyond10x',
+  projectName: 'agentic-principles',
+  trailingSlash: false,
+
+  onBrokenLinks: 'throw',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'throw',
+    },
+  },
+
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+
+  plugins: [principleDataPlugin],
+
+  presets: [
+    [
+      'classic',
+      {
+        docs: {
+          path: '../docs',
+          routeBasePath: 'research',
+          sidebarPath: './sidebars.ts',
+          editUrl:
+            'https://github.com/beyond10x/agentic-principles/edit/main/docs/',
+          showLastUpdateTime: true,
+        },
+        blog: false,
+        theme: {
+          customCss: './src/css/custom.css',
+        },
+      } satisfies Preset.Options,
+    ],
+  ],
+
+  themeConfig: {
+    image: 'img/social-card.svg',
+    metadata: [
+      {
+        name: 'keywords',
+        content:
+          'agentic systems, AI agents, software factory, SRE automation, customer support, safety, reliability',
+      },
+    ],
+    colorMode: {
+      defaultMode: 'dark',
+      respectPrefersColorScheme: true,
+    },
+    navbar: {
+      title: 'Agentic Principles',
+      hideOnScroll: true,
+      logo: {
+        alt: 'Agentic Principles mark',
+        src: 'img/mark.svg',
+      },
+      items: [
+        {
+          to: '/principles',
+          label: 'Principles',
+          position: 'left',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'researchSidebar',
+          label: 'Research',
+          position: 'left',
+        },
+        {
+          to: '/research/VISION#the-research-loop',
+          label: 'Method',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/beyond10x/agentic-principles',
+          label: 'GitHub',
+          position: 'right',
+        },
+      ],
+    },
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Explore',
+          items: [
+            {label: 'Principle catalog', to: '/principles'},
+            {label: 'Research notebook', to: '/research/VISION'},
+            {label: 'Research method', to: '/research/VISION#the-research-loop'},
+          ],
+        },
+        {
+          title: 'Domains',
+          items: [
+            {label: 'Software factories', to: '/'},
+            {label: 'SRE agents', to: '/'},
+            {label: 'Customer service', to: '/'},
+          ],
+        },
+        {
+          title: 'Project',
+          items: [
+            {
+              label: 'GitHub repository',
+              href: 'https://github.com/beyond10x/agentic-principles',
+            },
+            {
+              label: 'beyond10x Atlas',
+              href: 'https://github.com/beyond10x/atlas',
+            },
+          ],
+        },
+      ],
+      copyright: `© ${new Date().getFullYear()} beyond10x · Evidence before autonomy.`,
+    },
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+    },
+  } satisfies Preset.ThemeConfig,
+};
+
+export default config;
