@@ -4,6 +4,8 @@ Notable changes to Agentic Principles are recorded here.
 
 ## [Unreleased]
 
+## [v0.1.1] - 2026-08-25
+
 ### Changed
 
 - Added a reader-first research landing page that explains the project, current evidence posture,
@@ -32,5 +34,6 @@ Notable changes to Agentic Principles are recorded here.
 - Dependabot coverage for npm and GitHub Actions, plus repository secret scanning and push
   protection.
 
-[Unreleased]: https://github.com/beyond10x/agentic-principles/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/beyond10x/agentic-principles/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/beyond10x/agentic-principles/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/beyond10x/agentic-principles/releases/tag/v0.1.0
