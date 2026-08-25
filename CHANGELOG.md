@@ -2,6 +2,18 @@
 
 Notable changes to Agentic Principles are recorded here.
 
+## [Unreleased]
+
+### Changed
+
+- Added a reader-first research landing page that explains the project, current evidence posture,
+  maturity labels, and paths from claims to their supporting work.
+- Replaced timestamp-derived navigation labels with curated study and evidence titles.
+- Reworked the home page and principle catalog in plain language, surfaced the strongest current
+  result first, and made each card’s research source explicit.
+- Improved responsive readability, focus visibility, and the catalog’s lifecycle explanation without
+  changing any principle claim or maturity judgment.
+
 ## [v0.1.0] - 2026-08-25
 
 ### Added
@@ -20,4 +32,5 @@ Notable changes to Agentic Principles are recorded here.
 - Dependabot coverage for npm and GitHub Actions, plus repository secret scanning and push
   protection.
 
+[Unreleased]: https://github.com/beyond10x/agentic-principles/compare/v0.1.0...HEAD
 [v0.1.0]: https://github.com/beyond10x/agentic-principles/releases/tag/v0.1.0

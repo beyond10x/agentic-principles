@@ -1,4 +1,11 @@
-# Experiment analysis
+---
+title: Partial-failure experiment analysis
+description: Aggregate and per-scenario interpretation of the scoped-progress experiment and its annotation challenge.
+sidebar_label: Experiment analysis
+sidebar_position: 2
+---
+
+# Partial-failure experiment analysis
 
 - **Run date:** 2026-08-25
 - **Command:** `python3 simulate.py --verify --write-results`

@@ -1,4 +1,11 @@
-# Scoped progress under partial failure
+---
+title: What should an agent do when one capability fails?
+description: A mixed-method study of global halt, scoped continuation, and safety stop boundaries under partial failure.
+sidebar_label: Progress under partial failure
+sidebar_position: 1
+---
+
+# What should an agent do when one capability fails?
 
 - **Status:** candidate principle
 - **Created:** 2026-08-25T02:30:00+02:00

@@ -1,4 +1,11 @@
-# Engineering Protocols workflow fit
+---
+title: Can Engineering Protocols govern research?
+description: A workflow-fit analysis separating a structurally valid research specification from runtime enforcement.
+sidebar_label: Engineering Protocols workflow fit
+sidebar_position: 3
+---
+
+# Can Engineering Protocols govern the research workflow?
 
 - Created: 2026-08-25T00:43:18+02:00
 - Status: observed integration results plus proposed adoption

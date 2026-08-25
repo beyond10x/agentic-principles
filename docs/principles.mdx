@@ -1,25 +1,30 @@
 ---
 title: Principle catalog
 description: The current agentic principles, with evidence maturity kept visible.
-sidebar_position: 2
+unlisted: true
 ---
 
-import PrincipleCatalog from '@site/src/components/PrincipleCatalog';
+import Link from '@docusaurus/Link';
+import Admonition from '@theme/Admonition';
 
 # Principle catalog
 
-These are the claims currently worth testing—not eleven commandments. Maturity stays visible because a
-useful seed and a supported principle carry very different evidential weight.
+The catalog now has a dedicated reader-facing page that orders claims by evidence maturity and links
+each one to its supporting research.
 
-:::info Maturity discipline
+<div className="margin-bottom--lg">
+  <Link className="button button--primary" to="/principles">
+    Open the current principle catalog
+  </Link>
+</div>
+
+<Admonition type="info" title="Maturity discipline">
 
 **Seed** means an observation or synthesis worth investigating. **Candidate** means scope, mechanism,
 counter-pressure, operational consequence, and a falsifier are defined. Nothing here has yet earned
 **supported principle** status.
 
-:::
-
-<PrincipleCatalog />
+</Admonition>
 
 ## Promotion standard
 

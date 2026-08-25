@@ -1,7 +1,6 @@
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--ifm-navbar-height));
-  padding: clamp(5rem, 10vw, 9rem) 0 6rem;
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0 clamp(4.5rem, 8vw, 7rem);
   overflow: hidden;
   background:
     linear-gradient(125deg, rgba(14, 196, 172, 0.08), transparent 44%),
@@ -68,17 +67,11 @@
   max-width: 12ch;
   margin: 0;
   color: #f6f4ec;
-  font-size: clamp(3.2rem, 7.3vw, 7.4rem);
+  font-size: clamp(3.2rem, 6.2vw, 6.4rem);
   font-weight: 620;
   letter-spacing: -0.065em;
-  line-height: 0.93;
-}
-
-.heroCopy h1 em {
-  display: block;
-  color: var(--ap-accent);
-  font-family: var(--ap-serif);
-  font-weight: 500;
+  line-height: 0.96;
+  text-wrap: balance;
 }
 
 .lede {
@@ -138,7 +131,7 @@
 .metrics {
   display: flex;
   gap: clamp(1.5rem, 4vw, 3.5rem);
-  margin-top: 4rem;
+  margin-top: 3.25rem;
   padding-top: 1.4rem;
   border-top: 1px solid rgba(246, 244, 236, 0.12);
 }
@@ -157,8 +150,10 @@
 }
 
 .metrics span {
-  color: rgba(246, 244, 236, 0.48);
-  font-size: 0.7rem;
+  max-width: 11rem;
+  color: rgba(246, 244, 236, 0.64);
+  font-size: 0.74rem;
+  line-height: 1.4;
   letter-spacing: 0.04em;
 }
 
@@ -403,8 +398,8 @@
 
 .methodSteps p {
   margin: 0;
-  color: rgba(246, 244, 236, 0.48);
-  font-size: 0.8rem;
+  color: rgba(246, 244, 236, 0.64);
+  font-size: 0.84rem;
   line-height: 1.6;
 }
 

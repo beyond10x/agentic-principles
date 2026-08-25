@@ -36,6 +36,8 @@
   --ap-hypothesis: #b76717;
   --ap-candidate: #087e78;
   --ap-supported: #267342;
+  --ap-challenged: #a43e2e;
+  --ap-revised: #466b9d;
   --ap-shadow-soft: 0 8px 30px rgba(25, 37, 43, 0.05);
   --ap-shadow: 0 18px 55px rgba(25, 37, 43, 0.12);
   --docusaurus-highlighted-code-line-bg: rgba(8, 126, 120, 0.1);
@@ -67,6 +69,8 @@
   --ap-hypothesis: #efb466;
   --ap-candidate: #43cdbf;
   --ap-supported: #73cb91;
+  --ap-challenged: #ff987f;
+  --ap-revised: #8eb8f2;
   --ap-shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.12);
   --ap-shadow: 0 18px 55px rgba(0, 0, 0, 0.24);
   --docusaurus-highlighted-code-line-bg: rgba(67, 205, 191, 0.12);
@@ -79,6 +83,11 @@ html {
 body {
   font-variant-ligatures: common-ligatures;
   text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ifm-color-primary);
+  outline-offset: 3px;
 }
 
 ::selection {
@@ -140,6 +149,7 @@ body {
   font-size: clamp(2.5rem, 5vw, 4.8rem);
   letter-spacing: -0.055em;
   line-height: 1.02;
+  text-wrap: balance;
 }
 
 .theme-doc-markdown h2 {
@@ -152,6 +162,50 @@ body {
 .theme-doc-markdown blockquote {
   border-left-color: var(--ap-accent);
   background: var(--ap-card);
+}
+
+.reader-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 3rem;
+}
+
+.reader-paths article {
+  display: flex;
+  min-height: 15.5rem;
+  flex-direction: column;
+  padding: 1.35rem;
+  border: 1px solid var(--ap-line);
+  border-radius: 0.75rem;
+  background: var(--ap-card);
+  box-shadow: var(--ap-shadow-soft);
+}
+
+.reader-paths article > span {
+  color: var(--ap-kicker);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reader-paths h3 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: 1.2rem;
+}
+
+.reader-paths p {
+  flex: 1;
+  color: var(--ap-text-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.reader-paths a {
+  font-size: 0.8rem;
+  font-weight: 750;
 }
 
 .menu__link,
@@ -180,5 +234,19 @@ body {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .reader-paths {
+    grid-template-columns: 1fr;
+  }
+
+  .reader-paths article {
+    min-height: 0;
+  }
+
+  .reader-paths h3 {
+    margin-top: 1.4rem;
   }
 }

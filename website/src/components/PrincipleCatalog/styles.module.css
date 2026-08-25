@@ -8,7 +8,7 @@
 .card {
   position: relative;
   display: flex;
-  min-height: 18rem;
+  min-height: 20rem;
   flex-direction: column;
   padding: 1.5rem;
   overflow: hidden;
@@ -65,7 +65,7 @@
   padding: 0.3rem 0.6rem;
   border: 1px solid currentColor;
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   line-height: 1;
@@ -88,6 +88,15 @@
   color: var(--ap-supported);
 }
 
+.challenged,
+.retired {
+  color: var(--ap-challenged);
+}
+
+.revised {
+  color: var(--ap-revised);
+}
+
 .title {
   margin: 1.25rem 0 0.75rem;
   font-size: clamp(1.25rem, 2vw, 1.55rem);
@@ -103,15 +112,30 @@
 
 .footer {
   z-index: 1;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
   margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ap-line);
 }
 
 .tags {
   flex-wrap: wrap;
   gap: 0.35rem;
+}
+
+.source {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.source > span {
+  color: var(--ap-muted);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .tags span {
@@ -127,7 +151,7 @@
   color: var(--ifm-font-color-base);
   font-size: 0.82rem;
   font-weight: 750;
-  white-space: nowrap;
+  line-height: 1.4;
 }
 
 .link:hover {
@@ -142,5 +166,11 @@
 
   .card {
     min-height: auto;
+  }
+
+  .meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.7rem;
   }
 }

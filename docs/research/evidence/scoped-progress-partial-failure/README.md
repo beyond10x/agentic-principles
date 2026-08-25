@@ -1,4 +1,11 @@
-# Scoped-progress experiment
+---
+title: Partial-failure reproducibility bundle
+description: Inputs, code, raw results, and rerun instructions for the scoped-progress experiment.
+sidebar_label: Reproducibility bundle
+sidebar_position: 1
+---
+
+# Partial-failure reproducibility bundle
 
 This deterministic experiment compares three policies over the same twelve task graphs:
 

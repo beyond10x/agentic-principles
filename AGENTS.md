@@ -256,6 +256,21 @@ The Pages workflow is the publication boundary. Keep repository contents read-on
 persist checkout credentials, and do not run privileged deployment workflows on untrusted pull
 requests.
 
+### Public-surface editorial rules
+
+The repository filename is not the reader’s title. Every Markdown document published through the site
+must provide a concise human-readable title and description; timestamped research notes must also have
+a sidebar label that states the question or subject without requiring the reader to decode the slug.
+
+Entry pages assume no knowledge of Atlas, harness internals, workflow vocabulary, or maturity labels.
+Define a project-specific term on first use, state the current evidence posture in plain language, and
+offer a short path to the catalog, method, strongest result, and underlying evidence. Surface challenged
+claims before positive claims and otherwise make the most developed relevant evidence easy to find.
+
+Navigation and summaries are projections, not a second research corpus. Principle claims and maturity
+remain sourced from `docs/principles.json`; research findings remain in `docs/research/`; public cards
+and landing pages link to those sources instead of silently restating or strengthening them.
+
 ## Planning artifacts
 
 Plan items are markdown files under `.engineering/planning/<kind>/<slug>.md`: YAML frontmatter the

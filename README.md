@@ -1,19 +1,33 @@
 # Agentic Principles
 
-Evidence-backed principles for running agentic work safely and efficiently.
+Research for AI agents that do real work.
 
-The project studies software factories, automatic SRE agents, customer operations, and other
-consequential automation through web research, live tests, transcript analysis, and evaluations. Its
-output is a reviewable body of evidence and principles that can inform agent harnesses and
-metaharnesses without turning a single anecdote into policy.
+This project asks how agents can plan, use tools, and change external state without outrunning their
+authority, evidence, or ability to recover. It studies software delivery, automatic SRE, customer
+service, and other consequential SaaS operations through source research, live tests, transcript
+analysis, and evaluations.
 
-**Read the published research:**
-[beyond10x.github.io/agentic-principles](https://beyond10x.github.io/agentic-principles/)
+The result is not a list of commandments. It is a reviewable catalog of claims, each labelled by the
+strength of its evidence and linked to the work behind it.
 
-## What is here
+**Start with the [reader’s guide](https://beyond10x.github.io/agentic-principles/research/), or scan the
+[current principle catalog](https://beyond10x.github.io/agentic-principles/principles).**
+
+## Current evidence posture
+
+- **1 candidate principle** has a scoped mechanism, counter-pressure, falsifier, and mixed-method
+  study: contain a partial failure and continue only the independently verifiable safe frontier.
+- **10 seeds** are early research directions, not recommendations.
+- **0 supported principles** have yet met the independent empirical promotion standard.
+
+The [partial-failure study](https://beyond10x.github.io/agentic-principles/research/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure)
+is the strongest current result and the best example of the intended method.
+
+## Repository map
 
 | Path | Purpose |
 |---|---|
+| `docs/index.mdx` | Human-oriented entry point and guide to the evidence labels |
 | `docs/VISION.md` | Research mission, scientific method, and intended product feedback loop |
 | `docs/research/` | Timestamped questions, methods, evidence, analyses, and limitations |
 | `docs/principles.json` | Machine-readable principle registry |
@@ -29,7 +43,8 @@ seed → hypothesis → candidate principle → supported principle
 ```
 
 The maturity label is a claim about evidence strength, not editorial polish. Read
-[`docs/VISION.md`](docs/VISION.md) for the method and [`AGENTS.md`](AGENTS.md) for the operating rules.
+[`docs/index.mdx`](docs/index.mdx) for orientation, [`docs/VISION.md`](docs/VISION.md) for the full
+method, and [`AGENTS.md`](AGENTS.md) for the operating rules.
 
 ## Verify the research contracts
 

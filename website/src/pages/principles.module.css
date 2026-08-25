@@ -19,13 +19,14 @@
 }
 
 .header h1 {
-  max-width: 10ch;
+  max-width: 15ch;
   margin: 0;
   color: #f6f4ec;
-  font-size: clamp(3.4rem, 8vw, 7.5rem);
+  font-size: clamp(3.2rem, 6.5vw, 6.5rem);
   font-weight: 610;
   letter-spacing: -0.07em;
   line-height: 0.95;
+  text-wrap: balance;
 }
 
 .lede {
@@ -66,6 +67,37 @@
 .catalog {
   padding: 4rem 0 7rem;
   background: var(--ap-surface);
+}
+
+.readingGuide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1.2rem 1.35rem;
+  border: 1px solid var(--ap-line);
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 0.35rem;
+  background: var(--ap-card);
+}
+
+.readingGuide p {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--ap-text-soft);
+  line-height: 1.6;
+}
+
+.readingGuide strong {
+  color: var(--ifm-heading-color);
+}
+
+.readingGuide a,
+.guideLink {
+  flex: none;
+  font-size: 0.84rem;
+  font-weight: 750;
 }
 
 .catalogTop {
@@ -122,6 +154,11 @@
   color: var(--ifm-heading-color);
 }
 
+.guideLink {
+  display: inline-block;
+  margin-top: 3rem;
+}
+
 @media screen and (max-width: 700px) {
   .summary,
   .lifecycleGrid {
@@ -130,5 +167,11 @@
 
   .catalogTop {
     flex-direction: column;
+  }
+
+  .readingGuide {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }

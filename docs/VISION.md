@@ -1,4 +1,11 @@
-# Vision
+---
+title: Research vision and method
+description: The mission, scientific method, scope, and product feedback loop for Agentic Principles.
+sidebar_label: Research vision and method
+sidebar_position: 3
+---
+
+# Research vision and method
 
 ## Mission
 

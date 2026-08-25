@@ -1,3 +1,10 @@
+---
+title: Fix the source, not the adopter
+description: An incident-derived seed about repairing owned shared tooling instead of institutionalizing its defects downstream.
+sidebar_label: Fix the source, not the adopter
+sidebar_position: 2
+---
+
 # Fix the source, not the adopter
 
 - **Status:** seed

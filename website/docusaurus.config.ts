@@ -102,17 +102,18 @@ const config: Config = {
         {
           title: 'Explore',
           items: [
+            {label: 'Start here', to: '/research/'},
             {label: 'Principle catalog', to: '/principles'},
-            {label: 'Research notebook', to: '/research/VISION'},
+            {label: 'Strongest current study', to: '/research/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure'},
             {label: 'Research method', to: '/research/VISION#the-research-loop'},
           ],
         },
         {
-          title: 'Domains',
+          title: 'Understand',
           items: [
-            {label: 'Software factories', to: '/'},
-            {label: 'SRE agents', to: '/'},
-            {label: 'Customer service', to: '/'},
+            {label: 'Evidence labels', to: '/research/#how-to-read-an-evidence-label'},
+            {label: 'Research vision', to: '/research/VISION'},
+            {label: 'Scope and boundaries', to: '/research/VISION#what-this-repository-is-not'},
           ],
         },
         {

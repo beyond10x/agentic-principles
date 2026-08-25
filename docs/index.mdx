@@ -1,0 +1,98 @@
+---
+title: Start here
+description: A reader's guide to the Agentic Principles research, evidence levels, and current results.
+slug: /
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import PrincipleCatalog from '@site/src/components/PrincipleCatalog';
+import Admonition from '@theme/Admonition';
+
+# Start here
+
+Agentic Principles asks a practical question: **how can AI agents perform consequential work without
+outrunning their authority, evidence, or ability to recover?**
+
+We turn incidents, standards, experiments, transcripts, and live tests into claims that engineers can
+challenge and test. The focus is practical automation: software delivery, SRE, customer service, and
+the operational work around a SaaS business.
+
+<Admonition type="note" title="Where the research stands">
+
+This is an early research program. The catalog currently contains **one candidate principle** backed by
+a mixed-method study and **ten seeds** that still need focused testing. There are no supported
+principles yet. That distinction is intentional, and it appears everywhere a claim is shown.
+
+</Admonition>
+
+## Choose a path
+
+<div className="reader-paths">
+  <article>
+    <span>2 minute overview</span>
+    <h3>See the current claims</h3>
+    <p>Scan every principle, with its evidence level and supporting research attached.</p>
+    <Link to="/principles">Open the principle catalog →</Link>
+  </article>
+  <article>
+    <span>How we work</span>
+    <h3>Understand the method</h3>
+    <p>See how observations become hypotheses, tests, challenges, and product experiments.</p>
+    <Link to="/research/VISION#the-research-loop">Read the research method →</Link>
+  </article>
+  <article>
+    <span>Full trace</span>
+    <h3>Inspect the evidence</h3>
+    <p>Follow a claim through its question, competing explanations, experiment, and limitations.</p>
+    <Link to="/research/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure">
+      Read the strongest current study →
+    </Link>
+  </article>
+</div>
+
+## Start with the strongest current result
+
+The catalog is ordered by evidence maturity, so the most developed claim appears first. “Candidate”
+does not mean settled: it means the claim has a mechanism, scope, counter-pressure, falsifier, and
+operational consequence that are ready for further testing.
+
+<PrincipleCatalog featuredOnly limit={1} />
+
+## How to read an evidence label
+
+| Label | What it means | A responsible use |
+|---|---|---|
+| **Seed** | An observation or synthesis worth investigating. | Generate a research question; do not turn it into policy. |
+| **Hypothesis** | A falsifiable prediction with a proposed mechanism. | Design a test that could distinguish it from a competing explanation. |
+| **Candidate** | A scoped claim with evidence, trade-offs, a falsifier, and an operational consequence. | Run independent tests or a bounded product experiment. |
+| **Supported** | A claim that survived serious falsification and has independent, relevant empirical support. | Use within its stated boundaries while continuing to monitor counterevidence. |
+
+A claim can also be **challenged**, **revised**, or **retired**. The record remains visible when the
+evidence changes.
+
+## Browse the research by question
+
+- **What should an agent do when one capability fails?** Read the
+  [mixed-method partial-failure study](./research/2026-08-25T023000+0200_scoped-progress-under-partial-failure.md)
+  and its [reproducibility bundle](./research/evidence/scoped-progress-partial-failure/README.md).
+- **Should a tooling defect become adopter architecture?** Read
+  [Fix the source, not the adopter](./research/2026-08-25T005715+0200_fix-the-source-not-the-adopter.md),
+  an incident-derived seed with explicit counter-pressure.
+- **Can a governed engineering workflow express scientific research?** Read the
+  [Engineering Protocols workflow-fit analysis](./research/2026-08-25T004318+0200_engineering-protocols-workflow-fit.md).
+- **Which safety and engineering standards are relevant?** Read the early
+  [standards and workflow landscape](./research/2026-08-25T001928+0200_seed.md).
+- **Which hypotheses came from the existing software stack?** Read the
+  [Atlas-derived research seed](./research/2026-08-25T001613+0200_seed.md).
+
+## What this site does—and does not—claim
+
+The public site is an evidence surface, not a marketing proof. It should make observations,
+interpretations, uncertainty, and source material easy to inspect. A polished page does not promote a
+seed, a passing test does not establish a universal rule, and a product recommendation is not a
+verified product outcome.
+
+For the full mission, scope, and promotion standard, continue to the
+[research vision](./VISION.md). To inspect the source or reproduce a result, use the links in each
+study or <Link to="https://github.com/beyond10x/agentic-principles">open the repository</Link>.

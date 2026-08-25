@@ -8,11 +8,11 @@ import {usePrinciples} from '@site/src/data/principles';
 import styles from './index.module.css';
 
 const method = [
-  ['01', 'Frame', 'Name the decision, scope, and competing explanation.'],
-  ['02', 'Operationalize', 'Define measures, boundaries, and stopping conditions.'],
-  ['03', 'Observe', 'Collect attributable evidence without inflating its strength.'],
-  ['04', 'Challenge', 'Plant failures, seek counterexamples, and test the evaluator.'],
-  ['05', 'Transfer', 'Hand products a bounded claim and a falsifiable experiment.'],
+  ['01', 'Ask', 'Name the decision and the question that could change it.'],
+  ['02', 'Compare', 'Record a hypothesis and at least one credible alternative.'],
+  ['03', 'Test', 'Choose evidence, boundaries, and stopping conditions in advance.'],
+  ['04', 'Challenge', 'Seek counterexamples and prove the evaluator can catch failure.'],
+  ['05', 'Apply', 'Hand products a scoped claim and an experiment that can disprove it.'],
 ];
 
 const domains = [
@@ -38,13 +38,15 @@ const domains = [
 
 function SafeFrontier(): ReactNode {
   return (
-    <aside className={styles.frontier} aria-label="Safe frontier example">
+    <aside
+      className={styles.frontier}
+      aria-label="Example of safe progress when one tool fails">
       <div className={styles.frontierTop}>
-        <span>LIVE / PARTIAL FAILURE</span>
-        <span className={styles.pulse}>capability offline</span>
+        <span>EXAMPLE / ONE TOOL FAILED</span>
+        <span className={styles.pulse}>publishing offline</span>
       </div>
       <div className={styles.frontierBody}>
-        <div className={styles.frontierLabel}>safe frontier</div>
+        <div className={styles.frontierLabel}>Work that remains safe</div>
         <div className={`${styles.task} ${styles.complete}`}>
           <span>01</span>
           <strong>Validate local evidence</strong>
@@ -61,8 +63,8 @@ function SafeFrontier(): ReactNode {
           <em>deferred</em>
         </div>
         <div className={styles.boundary}>
-          <span>STOP BOUNDARY</span>
-          <p>Authority, freshness, and observability must be known before consequential work continues.</p>
+          <span>STOP WHEN EVIDENCE RUNS OUT</span>
+          <p>Do not continue consequential work when authority, freshness, or observability is unknown.</p>
         </div>
       </div>
     </aside>
@@ -73,6 +75,9 @@ export default function Home(): ReactNode {
   const {principles} = usePrinciples();
   const candidateCount = principles.filter(
     (principle) => principle.maturity === 'candidate',
+  ).length;
+  const seedCount = principles.filter(
+    (principle) => principle.maturity === 'seed',
   ).length;
 
   return (
@@ -85,35 +90,34 @@ export default function Home(): ReactNode {
           <div className={`container ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <div className={styles.eyebrow}>
-                <span /> Research before reach
+                <span /> Evidence-led research
               </div>
-              <Heading as="h1">
-                Agents should earn their <em>operating envelope.</em>
-              </Heading>
+              <Heading as="h1">Research for AI agents that do real work.</Heading>
               <p className={styles.lede}>
-                We research the mechanisms that let autonomous systems move quickly
-                without outrunning authority, evidence, or recovery.
+                We study failures, run experiments, and analyze standards to find practical
+                rules for software, SRE, and customer-service agents—without pretending
+                early ideas are settled facts.
               </p>
               <div className={styles.actions}>
                 <Link className={styles.primaryAction} to="/principles">
-                  Explore the principles <span aria-hidden="true">↗</span>
+                  See what we know <span aria-hidden="true">↗</span>
                 </Link>
-                <Link className={styles.secondaryAction} to="/research/VISION">
-                  Read the research method
+                <Link className={styles.secondaryAction} to="/research/">
+                  Start with the reader’s guide
                 </Link>
               </div>
               <div className={styles.metrics} aria-label="Registry summary">
                 <div>
                   <strong>{principles.length}</strong>
-                  <span>claims under test</span>
+                  <span>active claims</span>
                 </div>
                 <div>
                   <strong>{candidateCount}</strong>
-                  <span>candidate principle</span>
+                  <span>candidate backed by a study</span>
                 </div>
                 <div>
-                  <strong>0</strong>
-                  <span>unsupported certainties</span>
+                  <strong>{seedCount}</strong>
+                  <span>early ideas that need testing</span>
                 </div>
               </div>
             </div>
@@ -123,19 +127,20 @@ export default function Home(): ReactNode {
 
         <section className={styles.thesis}>
           <div className="container">
-            <p className={styles.sectionLabel}>The thesis</p>
+            <p className={styles.sectionLabel}>Why this exists</p>
             <Heading as="h2">
-              Autonomy is not a permission bit. It is a continuously verified system property.
+              Automation should earn trust with evidence, not confident language.
             </Heading>
             <div className={styles.thesisGrid}>
               <p>
-                A useful agent can plan and act across tools. A dependable agent can also
-                expose its assumptions, preserve provenance, detect when its evaluator is
-                blind, and stop at the exact boundary where evidence runs out.
+                Agents can plan, use tools, and change external state. That freedom is useful,
+                but it can also amplify a bad assumption, exceed authority, or hide failure
+                behind a plausible report.
               </p>
               <p>
-                This repository turns incidents, experiments, transcripts, standards, and
-                live tests into principles our harness and metaharness products can enforce.
+                This project preserves the work behind every claim: what was observed, what
+                was inferred, what could prove it wrong, and how it might change a real
+                engineering decision.
               </p>
             </div>
           </div>
@@ -145,8 +150,8 @@ export default function Home(): ReactNode {
           <div className="container">
             <div className={styles.sectionHead}>
               <div>
-                <p className={styles.sectionLabel}>Current signals</p>
-                <Heading as="h2">Principles worth testing now</Heading>
+                <p className={styles.sectionLabel}>What we know so far</p>
+                <Heading as="h2">Start with the strongest evidence.</Heading>
               </div>
               <Link to="/principles">View all {principles.length} →</Link>
             </div>
@@ -158,12 +163,12 @@ export default function Home(): ReactNode {
           <div className="container">
             <div className={styles.sectionHead}>
               <div>
-                <p className={styles.sectionLabel}>The research loop</p>
-                <Heading as="h2">Claims move only when evidence moves.</Heading>
+                <p className={styles.sectionLabel}>How the research works</p>
+                <Heading as="h2">How an idea becomes a useful rule.</Heading>
               </div>
               <p className={styles.methodIntro}>
-                Every result keeps observation separate from inference and ends with the next
-                test most likely to change our mind.
+                We compare explanations before testing, keep observations separate from
+                interpretation, and show the next test most likely to change our mind.
               </p>
             </div>
             <ol className={styles.methodSteps}>
@@ -180,8 +185,8 @@ export default function Home(): ReactNode {
 
         <section className={styles.domains} id="domains">
           <div className="container">
-            <p className={styles.sectionLabel}>Where it has to work</p>
-            <Heading as="h2">One discipline, consequential domains.</Heading>
+            <p className={styles.sectionLabel}>Where this should help</p>
+            <Heading as="h2">Built for work with real consequences.</Heading>
             <div className={styles.domainGrid}>
               {domains.map((domain) => (
                 <article key={domain.number}>
@@ -198,16 +203,16 @@ export default function Home(): ReactNode {
         <section className={styles.closing}>
           <div className={`container ${styles.closingInner}`}>
             <div>
-              <p className={styles.sectionLabel}>An open research notebook</p>
-              <Heading as="h2">See the uncertainty, not just the conclusion.</Heading>
+              <p className={styles.sectionLabel}>Follow the evidence</p>
+              <Heading as="h2">Every claim links back to the work.</Heading>
             </div>
             <div className={styles.closingAction}>
               <p>
-                Read hypotheses, raw evidence, failed controls, counter-pressure, and
-                confidence in the same repository as the catalog.
+                Read the question, competing explanations, source material, experiment,
+                limitations, and the evidence label in one navigable trail.
               </p>
-              <Link className={styles.primaryAction} to="/research/VISION">
-                Open the notebook <span aria-hidden="true">↗</span>
+              <Link className={styles.primaryAction} to="/research/">
+                Browse the research <span aria-hidden="true">↗</span>
               </Link>
             </div>
           </div>

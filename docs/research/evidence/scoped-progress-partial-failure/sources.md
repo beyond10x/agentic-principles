@@ -1,4 +1,11 @@
-# Primary-source review
+---
+title: Primary sources for partial-failure research
+description: Direct resilience, workflow, and safety sources reviewed for the scoped-progress study.
+sidebar_label: Primary-source review
+sidebar_position: 3
+---
+
+# Primary sources for partial-failure research
 
 - **Accessed:** 2026-08-25
 - **Question:** When one capability fails, when should useful work continue?
