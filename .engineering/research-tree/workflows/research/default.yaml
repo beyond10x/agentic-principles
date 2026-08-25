@@ -1,0 +1,157 @@
+# Specification-only workflow for one bounded research question.
+#
+# This document deliberately does not have a profile or driver map yet. `protocol validate` can prove
+# that its graph is well formed; it cannot prove that the research phases have protocol semantics, that
+# the evidence was produced, or that a harness enforces the transitions. Those are recorded gaps, not
+# properties inferred from successful parsing.
+id: research/default
+version: 1
+title: Evidence-driven research workflow
+summary: >-
+  Frame one question, register hypotheses, operationalize a method, gather and analyze evidence,
+  challenge the result, synthesize it, review it, and hand a bounded result to its owning product.
+
+initial: receive
+
+states:
+  receive:
+    title: Receive
+    summary: Record the request or observation without improving it into a preferred conclusion.
+    phases: [intake]
+
+  frame:
+    title: Frame the question
+    summary: State an answerable question, its scope, and the decision its answer could change.
+    phases: [research-question]
+
+  hypothesize:
+    title: Register hypotheses
+    summary: Record candidate explanations and at least one plausible competing explanation.
+    phases: [hypothesis-formation]
+
+  operationalize:
+    title: Operationalize
+    summary: Define the method, measures, safety envelope, and stopping conditions.
+    phases: [research-design]
+
+  gather:
+    title: Gather evidence
+    summary: Collect authorized sources, observations, transcripts, or experimental results.
+    phases: [evidence-collection]
+
+  analyze:
+    title: Analyze
+    summary: Derive findings while keeping observation separate from interpretation.
+    phases: [analysis]
+
+  challenge:
+    title: Challenge
+    summary: Seek counterexamples, confounders, alternate explanations, and failed replications.
+    phases: [adversarial-verification]
+
+  synthesize:
+    title: Synthesize
+    summary: State the evidence-calibrated answer, limitations, confidence, and next discriminating test.
+    phases: [synthesis]
+
+  review:
+    title: Review
+    summary: Decide whether the result supports handoff, needs more research, or is inconclusive.
+    phases: [review]
+
+  handoff:
+    title: Handoff
+    summary: Package the claim, evidence, scope, test, expected effects, and risks for the owning product.
+    phases: [transfer]
+
+  complete:
+    title: Complete
+    terminal: true
+    summary: The bounded research result and any product handoff are recorded.
+    phases: [completion]
+
+  inconclusive:
+    title: Inconclusive
+    terminal: true
+    summary: The run produced useful evidence but cannot support a decision at the claimed confidence.
+    phases: [completion]
+
+  declined:
+    title: Declined
+    terminal: true
+    summary: No research was performed, and the reason is recorded as a result.
+    phases: [completion]
+
+transitions:
+  - from: receive
+    to: frame
+    description: Intake gives the original request a durable place before it is interpreted.
+
+  - from: frame
+    to: declined
+    description: The framed question is duplicate, already answered, unsafe, or irrelevant.
+    when: specification.declines_the_request
+
+  - from: frame
+    to: hypothesize
+    description: The question and its decision relevance exist as a specification.
+    when: artifact.specification.exists
+
+  - from: hypothesize
+    to: operationalize
+    description: Hypotheses are registered before the method can be shaped around observed results.
+
+  - from: operationalize
+    to: gather
+    description: Method, measures, safety boundaries, and stopping conditions are recorded.
+
+  - from: gather
+    to: analyze
+    description: At least one governed artifact observation exists; a source-free analysis cannot start.
+    requires:
+      evidence:
+        - kind: artifact
+          at_least: 1
+
+  - from: analyze
+    to: challenge
+    description: Findings and their derivation are explicit enough for a challenger to disagree with.
+
+  - from: challenge
+    to: operationalize
+    description: Required challenge evidence is missing, so the method or collection plan must change.
+    when: evidence.missing > 0
+
+  - from: challenge
+    to: synthesize
+    description: Something other than the researching agent has challenged the material result.
+    requires:
+      evidence:
+        - kind: verification
+          independent: true
+
+  - from: synthesize
+    to: review
+    description: The answer, limitations, counterevidence, confidence, and next test are recorded.
+    when: artifact.verification-report.exists
+
+  - from: review
+    to: operationalize
+    description: Review requested more or different evidence.
+    when: review.changes_requested
+
+  - from: review
+    to: inconclusive
+    description: Review found the evidence insufficient for handoff but worth retaining.
+    when: review.rejected
+
+  - from: review
+    to: handoff
+    description: Review accepted the result for a bounded product experiment or principle synthesis.
+    when: review.approved
+
+  - from: handoff
+    to: complete
+    description: >-
+      The transfer package is recorded. Product application happens in its owning repository; its
+      observed outcome starts a linked research run instead of reopening this execution forever.

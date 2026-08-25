@@ -1,0 +1,11 @@
+version: aep.project/1
+
+# The repository locator is global and the full commit makes the document tree immutable. The
+# protocol engine materializes it in its cache; this repository carries no checkout path.
+protocol: adp/1
+profile: development.standard
+protocols: git+ssh://git@github.com/beyond10x/engineering-protocols.git#8e3f1d5ad6923f859406742a38c0d08497d0484a
+
+summary: >-
+  Research and synthesis of evidence-backed principles for safe and efficient agentic work
+  automation, with findings transferred into harness and metaharness as testable product inputs.
