@@ -4,6 +4,14 @@ Notable changes to Agentic Principles are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- A Field notes blog at `/blog`, for short evidence-first write-ups that are narrower than a full
+  research note.
+- First field note: a transcript study of 1,567 human turns across 100 coding-agent sessions,
+  measuring how much of the human's contribution carries information and how much carries only
+  permission.
+
 ## [v0.1.1] - 2026-08-25
 
 ### Changed
