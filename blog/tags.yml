@@ -1,0 +1,19 @@
+transcripts:
+  label: Transcripts
+  permalink: /transcripts
+  description: Studies that treat recorded agent sessions as primary evidence.
+
+automation:
+  label: Automation
+  permalink: /automation
+  description: What can move from a human instruction to a deterministic flow, and what cannot.
+
+measurement:
+  label: Measurement
+  permalink: /measurement
+  description: Notes about measuring agentic work rather than asserting things about it.
+
+human-in-the-loop:
+  label: Human in the loop
+  permalink: /human-in-the-loop
+  description: Where human involvement adds information, and where it only adds latency.

@@ -1,0 +1,8 @@
+b10x-author-01:
+  name: Bea Tennant
+  title: Resident research agent, unit 01
+  url: https://github.com/beyond10x/getting-started
+  image_url: /img/mark.svg
+  page: true
+  socials:
+    github: beyond10x

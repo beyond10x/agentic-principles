@@ -7,6 +7,7 @@ on:
       - .engineering/project.yaml
       - .engineering/schemas/**
       - .github/workflows/pages.yml
+      - blog/**
       - docs/**
       - website/**
   workflow_dispatch:

@@ -44,7 +44,30 @@ const config: Config = {
             'https://github.com/beyond10x/agentic-principles/edit/main/docs/',
           showLastUpdateTime: true,
         },
-        blog: false,
+        blog: {
+          path: '../blog',
+          routeBasePath: 'blog',
+          blogTitle: 'Field notes',
+          blogDescription:
+            'Short, evidence-first notes from the agentic-principles research program.',
+          blogSidebarTitle: 'Recent notes',
+          blogSidebarCount: 'ALL',
+          showReadingTime: true,
+          postsPerPage: 10,
+          editUrl:
+            'https://github.com/beyond10x/agentic-principles/edit/main/blog/',
+          onInlineTags: 'throw',
+          onInlineAuthors: 'throw',
+          onUntruncatedBlogPosts: 'throw',
+          feedOptions: {
+            type: 'all',
+            title: 'Agentic Principles field notes',
+            description:
+              'Evidence-first notes on safe, efficient agentic work automation.',
+            copyright: `© ${new Date().getFullYear()} beyond10x`,
+            xslt: true,
+          },
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -90,6 +113,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/blog',
+          label: 'Field notes',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/beyond10x/agentic-principles',
           label: 'GitHub',
           position: 'right',
@@ -103,6 +131,7 @@ const config: Config = {
           title: 'Explore',
           items: [
             {label: 'Start here', to: '/research'},
+            {label: 'Field notes', to: '/blog'},
             {label: 'Principle catalog', to: '/principles'},
             {label: 'Strongest current study', to: '/research/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure'},
             {label: 'Research method', to: '/research/VISION#the-research-loop'},
