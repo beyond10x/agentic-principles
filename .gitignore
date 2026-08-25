@@ -1,2 +1,10 @@
 __pycache__/
 *.py[cod]
+
+# Generated website artifacts
+node_modules/
+build/
+dist/
+coverage/
+.docusaurus/
+.cache-loader/
