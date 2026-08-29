@@ -9,6 +9,17 @@ This repo owns research questions, evidence, experiments, analyses, competing ex
 principle synthesis. It does not own implementation in `harness`, `metaharness`, or other component
 repos. Product changes belong in those repos after an explicit handoff.
 
+## Serves
+
+The objectives of the collection this repository moves, by id from `atlas/ROADMAP.md` — the only
+cross-repository roadmap, and the page that says what each id means and which evidence closes it:
+
+- **O2 — decisions as data, with evidence.** A rule earns belief before it is executable: every claim labelled by the strength of its evidence, promoted to *supported* only on independent evidence.
+- **O6 — self-improvement, built into all of it.** Promotion, revision and retirement of principles is self-improvement applied to the rules themselves.
+
+A change here that moves none of these is a question for the operator, not a task.
+`atlas/scripts/check-map.sh` fails a repository whose `AGENTS.md` names no objective.
+
 ## Operating priorities
 
 In descending order:
