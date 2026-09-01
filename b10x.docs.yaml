@@ -20,7 +20,7 @@ surfaces:
       - {label: Field notes, url: https://beyond10x.github.io/agentic-principles/blog, kind: feed}
       - {label: Source, url: https://github.com/beyond10x/agentic-principles, kind: source}
     relationships:
-      - {target: engineering-protocols/docs, kind: informs}
+      - {target: aep/docs, kind: informs}
       - {target: harness/docs, kind: informs}
       - {target: metaharness/docs, kind: informs}
     feeds:

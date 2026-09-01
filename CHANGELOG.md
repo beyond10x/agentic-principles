@@ -4,6 +4,11 @@ Notable changes to Agentic Principles are recorded here.
 
 ## [Unreleased]
 
+### Changed
+
+- Point planning at the canonical AEP repository and command, and move adopter-owned JSON Schema
+  validation and TypeScript projection to the extracted ESS 0.2.1 tooling.
+
 ### Added
 
 - A Field notes blog at `/blog`, for short evidence-first write-ups that are narrower than a full

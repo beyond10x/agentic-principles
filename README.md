@@ -32,7 +32,7 @@ is the strongest current result and the best example of the intended method.
 | `docs/research/` | Timestamped questions, methods, evidence, analyses, and limitations |
 | `docs/principles.json` | Machine-readable principle registry |
 | `.engineering/schemas/` | Project-owned JSON Schema contracts |
-| `.engineering/planning/` | Governed planning artifacts, mutated only through `protocol artifact` |
+| `.engineering/planning/` | Governed planning artifacts, mutated only through `aep artifact` |
 | `website/` | Docusaurus source for the public research site |
 
 Principles move through an explicit lifecycle:
@@ -48,14 +48,15 @@ method, and [`AGENTS.md`](AGENTS.md) for the operating rules.
 
 ## Verify the research contracts
 
-The shared `protocol` CLI comes from
-[`beyond10x/engineering-protocols`](https://github.com/beyond10x/engineering-protocols). From the
+The shared schema-contract tooling comes from
+[`beyond10x/ess`](https://github.com/beyond10x/ess). From the
 repository root:
 
 ```bash
-protocol schema validate \
+ess schema validate \
   docs/principles.json \
-  docs/research/evidence/scoped-progress-partial-failure/*.json
+  docs/research/evidence/scoped-progress-partial-failure/*.json \
+  --schemas .engineering/schemas
 
 cd website
 npm ci --ignore-scripts

@@ -4,7 +4,7 @@ version: aep.project/1
 # protocol engine materializes it in its cache; this repository carries no checkout path.
 protocol: adp/1
 profile: development.standard
-protocols: git+ssh://git@github.com/beyond10x/engineering-protocols.git#79b641c9c75411627669dfce7f0bac04d4472463
+protocols: git+ssh://git@github.com/beyond10x/aep.git#52ca1ec48da9c744e2e551eab64f7cbad6ab7c3c
 schemas: schemas
 
 summary: >-

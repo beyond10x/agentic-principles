@@ -10,8 +10,8 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "schema:check": "protocol schema typescript urn:beyond10x:agentic-principles:schema:registry:1 --root PrincipleRegistry --out src/generated/principle-registry.ts --check",
-    "schema:generate": "protocol schema typescript urn:beyond10x:agentic-principles:schema:registry:1 --root PrincipleRegistry --out src/generated/principle-registry.ts",
+    "schema:check": "ess schema typescript urn:beyond10x:agentic-principles:schema:registry:1 --root PrincipleRegistry --schemas ../.engineering/schemas --out src/generated/principle-registry.ts --check",
+    "schema:generate": "ess schema typescript urn:beyond10x:agentic-principles:schema:registry:1 --root PrincipleRegistry --schemas ../.engineering/schemas --out src/generated/principle-registry.ts",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc"

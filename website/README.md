@@ -19,7 +19,7 @@ npm run start
 ## Contract workflow
 
 ```bash
-protocol schema validate ../docs/principles.json ../docs/research/evidence
+ess schema validate ../docs/principles.json ../docs/research/evidence --schemas ../.engineering/schemas
 npm run schema:generate
 npm run schema:check
 ```

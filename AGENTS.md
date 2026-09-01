@@ -250,7 +250,8 @@ Before a public release:
    data, machine-local paths, unpublished credentials, or re-identification material is present.
 2. Confirm that `node_modules`, `build`, `dist`, coverage output, Docusaurus caches, and other generated
    dependency trees have never entered the release history.
-3. Run `protocol schema validate` over every published schema instance, then run the website's
+3. Run `ess schema validate … --schemas .engineering/schemas` over every published schema
+   instance, then run the website's
    `schema:check`, `typecheck`, and production `build` scripts from a locked npm install.
 4. Review dependency-audit findings in context. Do not hide a residual advisory; record why its attack
    surface is or is not reachable, gate unacceptable severity, and keep automated updates enabled.
@@ -285,7 +286,7 @@ and landing pages link to those sources instead of silently restating or strengt
 ## Planning artifacts
 
 Plan items are markdown files under `.engineering/planning/<kind>/<slug>.md`: YAML frontmatter the
-`protocol` CLI owns, and a body the agent and operator own. The repository-local planning skill at
+`aep` CLI owns, and a body the agent and operator own. The repository-local planning skill at
 `.agents/skills/planning/SKILL.md` carries the full model and store conventions.
 
 ### Ask the CLI; do not recite the vocabulary
@@ -295,23 +296,23 @@ when needed instead of copying them into prose:
 
 | Question | Command |
 |---|---|
-| What kinds can I create? | `protocol artifact kinds` |
-| What edges exist between artifacts? | `protocol artifact relations` |
-| What statuses and moves does a kind have? | `protocol artifact lifecycle <kind>` |
-| What is already in the store? | `protocol artifact list [--kind k] [--status s] [--format json]` |
-| What does it look like as a board? | `protocol artifact board [--kind k]` |
-| How is it wired together? | `protocol artifact graph` |
+| What kinds can I create? | `aep artifact kinds` |
+| What edges exist between artifacts? | `aep artifact relations` |
+| What statuses and moves does a kind have? | `aep artifact lifecycle <kind>` |
+| What is already in the store? | `aep artifact list [--kind k] [--status s] [--format json]` |
+| What does it look like as a board? | `aep artifact board [--kind k]` |
+| How is it wired together? | `aep artifact graph` |
 
-Before the first planning-store write of a session, run `protocol artifact list` and
-`protocol artifact kinds`.
+Before the first planning-store write of a session, run `aep artifact list` and
+`aep artifact kinds`.
 
 ### Planning guardrails
 
-1. **A status changes only through `protocol artifact move`.** Never edit `status:` directly. The
+1. **A status changes only through `aep artifact move`.** Never edit `status:` directly. The
    CLI validates the move against the kind's lifecycle.
-2. **Never edit a planning-store file directly.** Use `protocol artifact new` for creation,
+2. **Never edit a planning-store file directly.** Use `aep artifact new` for creation,
    `relate` for relations, `move` for status, and `body <id> --from <path|->` for prose.
-3. **After a batch, run `protocol artifact validate` and relay its output verbatim.** It accumulates
+3. **After a batch, run `aep artifact validate` and relay its output verbatim.** It accumulates
    defects and its detailed output is the useful result.
 4. **A refusal is an answer.** Relay the legal moves the CLI names. Do not route around a refusal or
    silently walk through an intermediate state.
@@ -331,7 +332,8 @@ operator already requested the specific move. Never infer a bulk move.
 entry resolves to `.engineering/schemas`. JSON Schema is the only authored runtime contract. Each
 schema's absolute `$id` is its identity and instances select it with `schema`.
 
-Use `protocol schema validate` for structural validation and `protocol schema typescript` for a
+Use `ess schema validate … --schemas .engineering/schemas` for structural validation and
+`ess schema typescript … --schemas .engineering/schemas` for a
 deterministic consumer projection. Do not add repository-local validators or handwritten copies of
 generated types. The repository skill at `.agents/skills/schema-contracts/SKILL.md` carries the full
 workflow.
