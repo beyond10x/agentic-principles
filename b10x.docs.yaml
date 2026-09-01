@@ -1,0 +1,30 @@
+schema: b10x-docs/v1
+repository:
+  id: agentic-principles
+  url: https://github.com/beyond10x/agentic-principles
+surfaces:
+  - id: docs
+    name: Agentic Principles
+    summary: Evidence-backed principles for safe and efficient agentic work automation.
+    kind: research
+    canonicalUrl: https://beyond10x.github.io/agentic-principles/
+    maturity: experimental
+    availability: published
+    discoverability: public
+    audiences: [evaluator, researcher, developer]
+    journeys: [understand, build-agents]
+    capabilities: [evidence-registry, principle-catalog, field-notes]
+    sections:
+      - {label: Principles, url: https://beyond10x.github.io/agentic-principles/principles, kind: reference}
+      - {label: Research guide, url: https://beyond10x.github.io/agentic-principles/research, kind: docs}
+      - {label: Field notes, url: https://beyond10x.github.io/agentic-principles/blog, kind: feed}
+      - {label: Source, url: https://github.com/beyond10x/agentic-principles, kind: source}
+    relationships:
+      - {target: engineering-protocols/docs, kind: informs}
+      - {target: harness/docs, kind: informs}
+      - {target: metaharness/docs, kind: informs}
+    feeds:
+      - {label: Field notes RSS, url: https://beyond10x.github.io/agentic-principles/blog/rss.xml, kind: feed}
+    accent: "#43cdbf"
+    mark: website/static/img/mark.svg
+    shell: {integration: docusaurus, revision: 6323bfdaf73609247e8dabcc9df410ab280a1960}

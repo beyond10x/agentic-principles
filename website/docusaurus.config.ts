@@ -2,6 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import principleDataPlugin from './plugins/principle-data/index';
+import docsSystemPlugin from '@beyond10x/docs-system/docusaurus';
 
 const config: Config = {
   title: 'Agentic Principles',
@@ -30,7 +31,7 @@ const config: Config = {
     locales: ['en'],
   },
 
-  plugins: [principleDataPlugin],
+  plugins: [principleDataPlugin, docsSystemPlugin],
 
   presets: [
     [
@@ -96,6 +97,8 @@ const config: Config = {
         src: 'img/mark.svg',
       },
       items: [
+        {href: 'https://beyond10x.github.io/getting-started/', label: 'beyond10x', position: 'left'},
+        {href: 'https://beyond10x.github.io/getting-started/ecosystem', label: 'Ecosystem', position: 'left'},
         {
           to: '/principles',
           label: 'Principles',
@@ -153,8 +156,8 @@ const config: Config = {
               href: 'https://github.com/beyond10x/agentic-principles',
             },
             {
-              label: 'beyond10x Atlas',
-              href: 'https://github.com/beyond10x/atlas',
+              label: 'beyond10x ecosystem',
+              href: 'https://beyond10x.github.io/getting-started/ecosystem',
             },
           ],
         },
