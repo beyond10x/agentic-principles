@@ -76,3 +76,9 @@ the static artifact with least-privilege Pages permissions.
 
 `node_modules`, `build`, `dist`, coverage output, and Docusaurus caches are ignored and are never
 release inputs. See [`CHANGELOG.md`](CHANGELOG.md) for released milestones.
+
+<!-- b10x-docs:start -->
+## Documentation
+
+[Agentic Principles documentation](https://beyond10x.github.io/docs/agentic-principles/) · [Start](https://beyond10x.github.io/) · [Ecosystem](https://beyond10x.github.io/ecosystem/) · [Impact](https://beyond10x.github.io/changes/) · [Releases](https://beyond10x.github.io/releases/)
+<!-- b10x-docs:end -->

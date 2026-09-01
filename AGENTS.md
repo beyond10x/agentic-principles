@@ -260,13 +260,14 @@ Before a public release:
 6. Push commits and tags using the bot identity wrapper supplied by
    `https://github.com/beyond10x/atlas`. Do not encode a machine-specific cross-repository path in
    repository files.
-7. Wait for the real GitHub Pages workflow, verify its conclusion and deployed URL, and make an HTTP
-   request to the public site. A local build alone is not publication evidence.
+7. Wait for the governed organization Website publication, verify the canonical route and project
+   redirect façade, and make an HTTP request to the public site. A local build alone is not
+   publication evidence.
 
-The Pages workflow is the publication boundary. Keep repository contents read-only by default, grant
-`pages: write` and `id-token: write` only to the deploy job, pin actions to immutable revisions, do not
-persist checkout credentials, and do not run privileged deployment workflows on untrusted pull
-requests.
+`.github/workflows/pages.yml` is repository-owned validation, not a publication boundary. Preserve
+its schema, audit, projection, type and build checks, but keep it unconditionally triggered on pull
+requests, exactly read-only, secret-free and unable to configure, upload or deploy Pages. The
+Atlas-generated `.github/workflows/b10x-docs-pages.yml` is the sole project-Pages authority.
 
 ### Public-surface editorial rules
 
@@ -337,3 +338,11 @@ Use `ess schema validate … --schemas .engineering/schemas` for structural vali
 deterministic consumer projection. Do not add repository-local validators or handwritten copies of
 generated types. The repository skill at `.agents/skills/schema-contracts/SKILL.md` carries the full
 workflow.
+
+<!-- b10x-docs-operations:start -->
+## Public documentation operations
+
+This repository owns the public source and presentation allowlist in `b10x.docs.yaml`; the unified [beyond10x Website](https://beyond10x.github.io/docs/agentic-principles/) passively collects those declared files from the exact commit in `website/sources.lock.json`. Atlas owns discovery grouping/order; Website and Docs System own rendering, shared components, search, and feeds. Do not add a standalone docs deployer or put App credentials in this public repository. If Atlas catalogs a former Pages workflow, that file remains repository-owned validation: preserve its bespoke checks while keeping exact read-only permissions, an unconditional pull-request trigger, and no deployment primitives. Project Pages at `/agentic-principles/` is only the generated redirect façade in `.github/workflows/b10x-docs-pages.yml`.
+
+From a complete organization workspace, run `cargo run --manifest-path atlas/Cargo.toml -- docs reconcile --workspace . --check` to verify the contract. Keep internal plans, stories, ADRs, decisions, worklogs, security material, and research out of the public allowlist unless a repository authority explicitly declares them public.
+<!-- b10x-docs-operations:end -->
