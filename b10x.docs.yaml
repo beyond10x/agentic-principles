@@ -1,4 +1,4 @@
-schema: b10x-docs/v1
+schema: b10x-docs/v2
 repository:
   id: agentic-principles
   url: https://github.com/beyond10x/agentic-principles
@@ -12,7 +12,7 @@ surfaces:
     availability: published
     discoverability: public
     audiences: [evaluator, researcher, developer]
-    journeys: [understand, build-agents]
+    journeys: [understand, plan-work, build-agents]
     capabilities: [evidence-registry, principle-catalog, field-notes]
     sections:
       - {label: Principles, url: https://beyond10x.github.io/agentic-principles/principles, kind: reference}
@@ -25,6 +25,12 @@ surfaces:
       - {target: metaharness/docs, kind: informs}
     feeds:
       - {label: Field notes RSS, url: https://beyond10x.github.io/agentic-principles/blog/rss.xml, kind: feed}
+    adoption:
+      label: Read the principle catalog
+      url: https://beyond10x.github.io/agentic-principles/principles
+      mode: browser
+      estimatedMinutes: 8
+      outcome: Identify an evidence-backed principle and inspect the evidence behind it.
     accent: "#43cdbf"
     mark: website/static/img/mark.svg
-    shell: {integration: docusaurus, revision: 0cbd1f1b6951fec95767332e3a1792f838feb62d}
+    shell: {integration: docusaurus, revision: 73aefe1ca268cc853ed38fb23478454496462a03}

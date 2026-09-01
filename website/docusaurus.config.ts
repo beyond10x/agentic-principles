@@ -2,7 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import principleDataPlugin from './plugins/principle-data/index';
-import docsSystemPlugin from '@beyond10x/docs-system/docusaurus';
+import docsSystemPlugin, {ecosystemFooterGroup, ecosystemNavbarItems} from '@beyond10x/docs-system/docusaurus';
 
 const config: Config = {
   title: 'Agentic Principles',
@@ -97,8 +97,7 @@ const config: Config = {
         src: 'img/mark.svg',
       },
       items: [
-        {href: 'https://beyond10x.github.io/getting-started/', label: 'beyond10x', position: 'left'},
-        {href: 'https://beyond10x.github.io/getting-started/ecosystem', label: 'Ecosystem', position: 'left'},
+        ...ecosystemNavbarItems(),
         {
           to: '/principles',
           label: 'Principles',
@@ -130,6 +129,7 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
+        ecosystemFooterGroup(),
         {
           title: 'Explore',
           items: [
