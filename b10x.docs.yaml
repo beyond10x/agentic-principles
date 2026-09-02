@@ -78,6 +78,7 @@ surfaces:
       - docs/decisions/**
       - docs/internal/**
       - docs/plans/**
+      - docs/research/2026-08-25T001613+0200_seed.md
       - docs/stories/**
       - docs/worklogs/**
       include:

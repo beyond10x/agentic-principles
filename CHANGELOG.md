@@ -6,6 +6,9 @@ Notable changes to Agentic Principles are recorded here.
 
 ### Changed
 
+- Mark the Atlas-derived historical seed as privately sourced, preserve its exact source locators
+  without broken public links, withhold it from unified publication pending public evidence, and
+  remove analytics parameters from the standards seed's source links.
 - Point planning at the canonical AEP repository and command, and move adopter-owned JSON Schema
   validation and TypeScript projection to the extracted ESS 0.2.1 tooling.
 
