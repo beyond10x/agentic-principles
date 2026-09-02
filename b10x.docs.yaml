@@ -57,7 +57,7 @@ surfaces:
     url: https://beyond10x.github.io/components/agentic-principles/principles/
   - kind: docs
     label: Research guide
-    url: https://beyond10x.github.io/docs/agentic-principles/research
+    url: https://beyond10x.github.io/docs/agentic-principles/research/
   - kind: feed
     label: Field notes
     url: https://beyond10x.github.io/changes/
