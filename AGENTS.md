@@ -260,9 +260,10 @@ Before a public release:
 6. Push commits and tags using the bot identity wrapper supplied by
    `https://github.com/beyond10x/atlas`. Do not encode a machine-specific cross-repository path in
    repository files.
-7. Wait for the governed organization Website publication, verify the canonical route and project
-   redirect façade, and make an HTTP request to the public site. A local build alone is not
-   publication evidence.
+7. Complete the source release after its own tag, checks and GitHub release are verified.
+   Atlas observes the published source asynchronously. Report documentation as pending until
+   the governed Website publication and canonical route are verified; a local build alone is
+   not publication evidence.
 
 `.github/workflows/pages.yml` is repository-owned validation, not a publication boundary. Preserve
 its schema, audit, projection, type and build checks, but keep it unconditionally triggered on pull
@@ -358,3 +359,24 @@ cargo run --manifest-path "$atlas_checkout/Cargo.toml" --locked -q -- \
 
 Keep internal plans, stories, ADRs, decisions, worklogs, security material, and research out of the public allowlist unless a repository authority explicitly declares them public.
 <!-- b10x-docs-operations:end -->
+
+<!-- b10x-release-operations:start -->
+## Release completion
+
+An ordinary release completes after this repository's exact tag, required source checks,
+published release and required artifacts are verified. A pushed tag with unfinished checks or
+uploads is queued; report it as released only after those requirements succeed.
+
+Atlas reconciliation and public documentation publication run asynchronously. Do not wait for
+Atlas or Website, update Website source locks or bootstrap snapshots, promote consumer pins,
+release shared docs tooling, or redeploy documentation façades as part of an ordinary source
+release. Report documentation as pending unless its publication was actually verified. A background
+documentation failure does not invalidate a successful source release.
+
+Keep this repository's provenance, correctness, security, compatibility and artifact verification
+requirements. Shared rendering, routing or delivery-control changes still require their relevant
+integration gates. A release request does not authorize deployment or downstream releases.
+Repositories without a release unit retain their existing publication policy. This completion
+boundary supersedes older instructions that attach synchronous documentation ceremony to each
+source release.
+<!-- b10x-release-operations:end -->
