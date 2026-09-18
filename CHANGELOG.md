@@ -15,6 +15,21 @@ Notable changes to Agentic Principles are recorded here.
 
 ### Added
 
+- A principle transfer-package contract at `.engineering/schemas/principle-transfer-package.schema.json`
+  and its first instance, `docs/transfer-packages/AP-011.json`, carrying the claim as a verbatim
+  quotation of its study, two graded confidence axes, ten evidence and seven counterevidence
+  citations, caveats, falsifier, behavior, evaluation, effects, rollout, and return path. Maturity is
+  not restated there: it stays sourced from `docs/principles.json`, which is unchanged.
+- A projector, `tools/project_harness_context.py`, that renders a gated principle into one context
+  document an operator passes with `harness --context <file>`. A principle reaches a run only at
+  maturity `candidate` or above and only while carrying a valid transfer package; the bar is a module
+  constant with no command-line override, so a seed has no code path to a document. Its `--verify`
+  suite proves each refusal fires against planted fixtures, and the Pages workflow runs it on every
+  pull request alongside schema validation of the new sidecars.
+- Documentation of where a transfer package lives, which principles may reach a run, the per-turn cost
+  of the projected context layer, and the sha256 correlation key that ties a product result back to
+  the research run that produced it — answering the `harness`/`metaharness` open question in
+  `specification:research-workflow`.
 - A Field notes blog at `/blog`, for short evidence-first write-ups that are narrower than a full
   research note.
 - First field note: a transcript study of 1,567 human turns across 100 coding-agent sessions,

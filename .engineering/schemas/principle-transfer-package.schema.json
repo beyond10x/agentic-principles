@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:beyond10x:agentic-principles:schema:transfer-package:1",
+  "title": "Principle transfer package",
+  "description": "The testable transfer package for one registry principle, keyed by its identifier. Carries the six parts docs/VISION.md requires of a handoff to harness or metaharness, reconciled with the candidate-principle obligations in AGENTS.md. Maturity is not restated here: it stays sourced from docs/principles.json.",
+  "type": "object",
+  "required": [
+    "schema",
+    "principle",
+    "updated",
+    "claim",
+    "confidence",
+    "mechanism",
+    "conditions",
+    "evidence",
+    "counterevidence",
+    "caveats",
+    "falsifier",
+    "behavior",
+    "evaluation",
+    "effects",
+    "rollout",
+    "returnPath"
+  ],
+  "properties": {
+    "schema": {
+      "const": "urn:beyond10x:agentic-principles:schema:transfer-package:1"
+    },
+    "principle": {
+      "description": "The registry identifier this package belongs to.",
+      "$ref": "#/$defs/principleId"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "claim": {"$ref": "#/$defs/claim"},
+    "confidence": {
+      "description": "VISION part 1. One graded axis per distinct thing the study can be confident about; the registry's single maturity label cannot express more than one.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/confidenceAxis"}
+    },
+    "mechanism": {
+      "description": "AGENTS.md principle lifecycle part 2: the causal or operational mechanism.",
+      "type": "string",
+      "minLength": 1
+    },
+    "conditions": {"$ref": "#/$defs/conditions"},
+    "evidence": {
+      "description": "VISION part 2, first half. Multiple citations, so a principle whose label moves because of a study can cite that study without collapsing into one source string.",
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/citation"}
+    },
+    "counterevidence": {
+      "description": "VISION part 2, second half. Known counterevidence and the trade-offs it establishes.",
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/citation"}
+    },
+    "caveats": {
+      "description": "What the evidence does not establish. Every caveat travels with every projection of this principle.",
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "falsifier": {"$ref": "#/$defs/falsifier"},
+    "behavior": {"$ref": "#/$defs/behavior"},
+    "evaluation": {"$ref": "#/$defs/evaluation"},
+    "effects": {"$ref": "#/$defs/effects"},
+    "rollout": {"$ref": "#/$defs/rollout"},
+    "returnPath": {"$ref": "#/$defs/returnPath"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "principleId": {
+      "type": "string",
+      "pattern": "^AP-[0-9]{3,}$"
+    },
+    "line": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lines": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/line"}
+    },
+    "repositoryPath": {
+      "description": "A repository-relative path, so a projector can check a quotation against its source.",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._][A-Za-z0-9._/+-]*$"
+    },
+    "evidenceKind": {
+      "description": "The AGENTS.md evidence vocabulary. Keeping the categories distinct is a repository rule, not a presentation choice.",
+      "enum": ["observed", "reported", "inferred", "hypothesized", "proposed"]
+    },
+    "confidenceLevel": {
+      "enum": ["low", "low-to-moderate", "moderate", "moderate-to-high", "high"]
+    },
+    "claim": {
+      "description": "VISION part 1, first half. The normative statement, quoted rather than restated, with the file it is quoted from so a projector can refuse a quotation that has drifted from its source.",
+      "type": "object",
+      "required": ["statement", "quotedFrom"],
+      "properties": {
+        "statement": {"type": "string", "minLength": 1},
+        "quotedFrom": {"$ref": "#/$defs/repositoryPath"}
+      },
+      "additionalProperties": false
+    },
+    "confidenceAxis": {
+      "type": "object",
+      "required": ["axis", "level", "basis"],
+      "properties": {
+        "axis": {"type": "string", "minLength": 1},
+        "level": {"$ref": "#/$defs/confidenceLevel"},
+        "basis": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "conditions": {
+      "description": "VISION part 3 and AGENTS.md principle lifecycle part 3: the task and risk conditions where the principle applies, where it must yield, and what it does not license.",
+      "type": "object",
+      "required": ["appliesWhen", "haltWhen", "doesNotMean"],
+      "properties": {
+        "appliesWhen": {"$ref": "#/$defs/lines"},
+        "haltWhen": {"$ref": "#/$defs/lines"},
+        "doesNotMean": {"$ref": "#/$defs/lines"}
+      },
+      "additionalProperties": false
+    },
+    "citation": {
+      "type": "object",
+      "required": ["id", "kind", "statement", "source"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "kind": {"$ref": "#/$defs/evidenceKind"},
+        "statement": {"type": "string", "minLength": 1},
+        "source": {
+          "description": "A repository path, a repo@commit:path locator, or an external URL with its access date recorded in `accessed`.",
+          "type": "string",
+          "minLength": 1
+        },
+        "accessed": {"type": "string", "format": "date"},
+        "resultHash": {
+          "description": "The deterministic output hash of a rerunnable artifact, where one exists.",
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "command": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "falsifier": {
+      "description": "AGENTS.md principle lifecycle part 6.",
+      "type": "object",
+      "required": ["weakenedIf", "nextExperiment"],
+      "properties": {
+        "weakenedIf": {"$ref": "#/$defs/lines"},
+        "nextExperiment": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "behavior": {
+      "description": "VISION part 4 and AGENTS.md product handoff items 1 and 4: the behavior or interface suggested, and the smallest slice that could test it.",
+      "type": "object",
+      "required": ["targets", "interface", "steps", "minimalSlice"],
+      "properties": {
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["harness", "metaharness"]}
+        },
+        "interface": {"type": "string", "minLength": 1},
+        "steps": {"$ref": "#/$defs/lines"},
+        "minimalSlice": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "evaluation": {
+      "description": "VISION part 5 and AGENTS.md product handoff item 5: an evaluation that can detect improvement and regression, with the planted-control discipline that makes a passing evaluator meaningful.",
+      "type": "object",
+      "required": [
+        "measures",
+        "improvementSignal",
+        "regressionSignal",
+        "baseline",
+        "plantedControl"
+      ],
+      "properties": {
+        "measures": {"$ref": "#/$defs/lines"},
+        "improvementSignal": {"type": "string", "minLength": 1},
+        "regressionSignal": {"type": "string", "minLength": 1},
+        "baseline": {"type": "string", "minLength": 1},
+        "plantedControl": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "effects": {
+      "description": "VISION part 6, one field per named dimension. Each states an expectation and its direction, not a measured result.",
+      "type": "object",
+      "required": ["safety", "quality", "latency", "cost", "operatorAttention"],
+      "properties": {
+        "safety": {"type": "string", "minLength": 1},
+        "quality": {"type": "string", "minLength": 1},
+        "latency": {"type": "string", "minLength": 1},
+        "cost": {"type": "string", "minLength": 1},
+        "operatorAttention": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "rollout": {
+      "description": "AGENTS.md product handoff item 6: risks, compatibility constraints, rollout conditions, and rollback.",
+      "type": "object",
+      "required": ["risks", "compatibility", "conditions", "rollback"],
+      "properties": {
+        "risks": {"$ref": "#/$defs/lines"},
+        "compatibility": {"$ref": "#/$defs/lines"},
+        "conditions": {"$ref": "#/$defs/lines"},
+        "rollback": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "returnPath": {
+      "description": "How a product outcome comes back as research input, so a rejected proposal closes rather than leaving the originating run open. See specification:research-workflow requirement 11.",
+      "type": "object",
+      "required": ["originatingRun", "recordOutcomeAs", "contradictionBecomes"],
+      "properties": {
+        "originatingRun": {"$ref": "#/$defs/repositoryPath"},
+        "recordOutcomeAs": {"type": "string", "minLength": 1},
+        "contradictionBecomes": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  }
+}

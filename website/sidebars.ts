@@ -10,6 +10,11 @@ const sidebars: SidebarsConfig = {
     },
     {type: 'doc', id: 'VISION', label: 'Research vision and method'},
     {
+      type: 'doc',
+      id: 'transfer-packages/README',
+      label: 'Transfer packages and the harness handoff',
+    },
+    {
       type: 'category',
       label: 'Studies and research notes',
       collapsed: false,

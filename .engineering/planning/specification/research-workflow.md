@@ -8,7 +8,9 @@ summary: Define a bounded, evidence-gated workflow for one research question and
 relations:
 - specifies: epic:research-operating-system
 - specifies: story:specify-research-workflow
-revision: 2
+- specifies: story:principle-transfer-package-contract
+- specifies: story:project-transfer-package-into-harness-context
+revision: 3
 ---
 # Specification: Agentic-principles research workflow
 
@@ -85,5 +87,21 @@ principle promotion, and production experimentation without explicit authorizati
 - Research owner: should the first executable version extend `aep/1` with an Agentic Research
   Protocol, or express research through generic artifact and verification evidence?
 - Research owner: which research methods need distinct evidence types and verifiers?
-- `harness` and `metaharness` owners: where does the transfer package live and how is its result
-  correlated back to the originating research run?
+- ~~`harness` and `metaharness` owners: where does the transfer package live and how is its result
+  correlated back to the originating research run?~~ **Answered.** The package lives in this
+  repository as one sidecar per principle at `docs/transfer-packages/<id>.json`, keyed by registry
+  identifier and validated against
+  `urn:beyond10x:agentic-principles:schema:transfer-package:1`; maturity is not restated there and
+  stays sourced from `docs/principles.json`. A principle reaches a run only at maturity `candidate`
+  or above and only while carrying a valid package, projected by
+  `tools/project_harness_context.py` into one deterministic document the operator passes with
+  `harness --context <file>`. The correlation key is that document's sha256, which covers the
+  registry entry and the package together and so names the exact claim, label and package revision
+  a run carried. A result returns as a dated note under `docs/research/` recording the run
+  identifier, model, harness and configuration version, that digest, and the package's evaluation
+  measures, and its conclusion becomes a citation on the package; a contradiction becomes a
+  counterevidence citation plus a new research run, satisfying requirement 11 without keeping the
+  originating run open. See `story:principle-transfer-package-contract` and
+  `story:project-transfer-package-into-harness-context`, and `docs/transfer-packages/README.md` for
+  the reader-facing account, including the per-turn cost that is the reason the bar is not "all
+  principles".

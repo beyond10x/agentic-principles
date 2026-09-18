@@ -11,6 +11,7 @@ on:
       - .github/workflows/pages.yml
       - blog/**
       - docs/**
+      - tools/**
       - website/**
   pull_request:
   workflow_dispatch:
@@ -53,8 +54,14 @@ jobs:
         run: >-
           ess schema validate
           docs/principles.json
+          docs/transfer-packages/*.json
           docs/research/evidence/scoped-progress-partial-failure/*.json
           --schemas .engineering/schemas
+
+      # A gate that cannot fail is not a gate. This runs the projector against planted-bad
+      # fixtures and fails if any refusal stops firing. Read-only; writes nothing to the tree.
+      - name: Prove the transfer-package projection gates
+        run: python3 tools/project_harness_context.py --verify
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
