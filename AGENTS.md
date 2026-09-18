@@ -217,6 +217,39 @@ A recommendation for `harness` or `metaharness` should identify:
 - acceptance and regression measures;
 - risks, compatibility constraints, rollout conditions, and rollback.
 
+### Where the transfer package lives
+
+One file per principle at `docs/transfer-packages/<id>.json`, validated against
+`urn:beyond10x:agentic-principles:schema:transfer-package:1`. It is a sidecar to
+`docs/principles.json`, never a second registry: maturity stays sourced from the registry, and the
+package's claim statement must be a verbatim quotation of the research note it cites.
+
+A principle reaches an agent run only when its registry maturity is `candidate` or `supported` **and**
+a valid package exists for it. `tools/project_harness_context.py` holds that bar in a module constant
+with no command-line override, so a seed has no code path to a document; `challenged`, `revised`, and
+`retired` are not projectable either. The projector writes an ordinary file that an operator passes
+with `harness --context <file>`; it is never ambient, and no harness change was required.
+
+The bar is an evidence judgment with a price attached. The projected document is a context layer
+billed on every turn of a run and unreclaimable by compaction — 6,848 bytes, roughly 1.7k tokens per
+turn, for the one principle that currently qualifies. Do not widen the bar to buy coverage.
+
+### Correlating a product result back
+
+The sha256 of the projected document is the correlation key. It covers the registry entry and the
+package together, so it names the exact claim, maturity label, and package revision a run carried.
+
+A product outcome returns as a dated note under `docs/research/` recording the harness run
+identifier, the model, the harness and configuration version, that digest, and the measured values
+of the package's evaluation measures; its conclusion is then added to the package's `evidence` or
+`counterevidence`. A contradiction becomes a counterevidence citation plus a new research run — the
+originating run stays closed, and registry maturity moves only through a reviewable synthesis
+decision, never automatically from a product result.
+
+Changing the projector or the package schema means re-running
+`python3 tools/project_harness_context.py --verify`, which proves each refusal still fires against
+the planted fixtures in `tools/fixtures/gate-proof/`. CI runs it on every pull request.
+
 Do not make product changes unless the user explicitly requests them. Cross-repo contracts and
 coordinated migrations follow the rules in `atlas`; this repo supplies research evidence, not an
 exception to those rules.

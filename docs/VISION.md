@@ -124,6 +124,18 @@ artifacts. `metaharness` is where they can shape external control, observability
 execution, comparative evaluation, and reproducibility. The products remain free to reject a proposal
 when evidence from implementation contradicts it; that contradiction returns here as research input.
 
+The package lives in this repository as one file per principle, `docs/transfer-packages/<id>.json`,
+validated against a project-owned schema. A principle reaches a run only at maturity `candidate` or
+above **and** carrying such a package; below that bar there is no code path to a document at all. A
+projected document is a context layer billed on every turn and unreclaimable by compaction — the
+current one is 6,848 bytes, roughly 1.7k tokens per turn — which is why the bar is not "all
+principles". The sha256 of that document is the correlation key: it covers the registry entry and
+the package together, so a product result states exactly which claim, label, and package revision
+the run carried, and comes back here as a dated note and a citation on the package rather than by
+holding the originating run open. See
+[Transfer packages](./transfer-packages/README.md) for the projector, the gates, and the return
+path.
+
 ## What this repository is not
 
 This is not:

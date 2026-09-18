@@ -1,0 +1,238 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:transfer-package:1",
+  "principle": "AP-011",
+  "updated": "2026-08-25T02:37:37+02:00",
+  "claim": {
+    "statement": "When a capability fails, an agent should checkpoint and defer the work that depends on it while continuing only the independently verifiable safe frontier; if a consequential task's dependencies, authority, freshness, observability, or rollback conditions are uncertain, that uncertainty is itself a stop boundary.",
+    "quotedFrom": "docs/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure.md"
+  },
+  "confidence": [
+    {
+      "axis": "mechanism",
+      "level": "moderate",
+      "basis": "Five independent reliability and workflow traditions converge, and the deterministic model behaves as predicted."
+    },
+    {
+      "axis": "agent-generalization",
+      "level": "low-to-moderate",
+      "basis": "Two recent agent benchmarks establish that tool failure and recovery are real, distinct evaluation dimensions, but the local transcript is one case and the custom experiment does not contain an LLM."
+    }
+  ],
+  "mechanism": "Failure localization prevents an impaired dependency from turning into run-wide idleness. Explicit prerequisites and capabilities identify which nodes remain runnable; checkpoints preserve completed evidence and blocked state for recovery. The uncertainty boundary prevents a plausible but incomplete task graph from authorizing work whose real preconditions disappeared with the failed capability.",
+  "conditions": {
+    "appliesWhen": [
+      "Multi-step work whose tasks and effects can be separated, checkpointed, and verified independently.",
+      "Local analysis, validation, drafting, and other reversible work whose inputs remain valid — where the principle is strongest.",
+      "A non-empty safe ready frontier remains: every prerequisite succeeded, all required capabilities are available, authority remains valid, and no freshness or transaction barrier applies."
+    ],
+    "haltWhen": [
+      "All remaining work is dependency-cut.",
+      "A transaction or invariant spans the whole run.",
+      "Authorization, monitoring, evidence capture, or rollback is unavailable.",
+      "Current external state is necessary and cannot be refreshed.",
+      "The agent cannot substantiate the independence of a consequential action.",
+      "The operator reprioritizes the run to incident response."
+    ],
+    "doesNotMean": [
+      "Retry the failed tool.",
+      "Invent a fallback.",
+      "Create unrelated busywork.",
+      "Make progress claims against stale state."
+    ]
+  },
+  "evidence": [
+    {
+      "id": "deterministic-policy-simulation",
+      "kind": "observed",
+      "statement": "Over twelve predeclared task graphs, scoped continuation completed 34 units of useful outage work, executed zero invalid tasks, correctly did no work in every all-blocked case, and reduced post-recovery scheduling in every beneficial case. Two runs produced an identical result hash.",
+      "source": "docs/research/evidence/scoped-progress-partial-failure/results.json",
+      "command": "python3 docs/research/evidence/scoped-progress-partial-failure/simulate.py --verify --write-results",
+      "resultHash": "sha256:8f6050b1b081885d0c854a3c6f7e8b3051d315dc9a409a9267895ebbecb48aa2"
+    },
+    {
+      "id": "planted-evaluator-control",
+      "kind": "observed",
+      "statement": "The deliberately unsafe naive-continuation control crossed 30 missing-capability, barrier, or tainted-dependency boundaries, all of which the verifier detected; the evaluator is therefore able to fail.",
+      "source": "docs/research/evidence/scoped-progress-partial-failure/analysis.md"
+    },
+    {
+      "id": "motivating-transcript",
+      "kind": "observed",
+      "statement": "At the first run-wide yield of the motivating incident, four pending actions required only local files and tools while four required the unavailable GitHub API or transport; after operator correction all four locally independent actions completed before connectivity returned, no blocked external action was attempted, and the preserved Git index let pushes resume without reconstructing repository state.",
+      "source": "docs/research/evidence/scoped-progress-partial-failure/transcript-coding.json"
+    },
+    {
+      "id": "nist-sp-800-160v2r1",
+      "kind": "reported",
+      "statement": "NIST defines a Continue resiliency objective that maximizes the duration and viability of essential functions during adversity, tied to explicit functional dependencies and critical assets, and accepts degraded operation to carry out mission-essential functions.",
+      "source": "https://doi.org/10.6028/NIST.SP.800-160v2r1",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "aws-static-stability",
+      "kind": "reported",
+      "statement": "Static stability separates impaired control-plane changes from continued data-plane operation, keeping existing correct behavior available while explicitly accepting that updates can be unavailable during impairment.",
+      "source": "https://aws.amazon.com/builders-library/static-stability-using-availability-zones/",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "google-sre-cascading-failures",
+      "kind": "reported",
+      "statement": "Google SRE frames graceful degradation as doing as much useful work as a system can without exhausting itself, and recommends selective rejection by task or priority rather than indiscriminate overload.",
+      "source": "https://sre.google/sre-book/addressing-cascading-failures/",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "microsoft-bulkhead",
+      "kind": "reported",
+      "statement": "The bulkhead pattern partitions resources so a failed dependency does not consume the capacity needed by unrelated services, letting unaffected services continue.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "zhu-fault-tolerant-workflow-scheduling",
+      "kind": "reported",
+      "statement": "Fault-tolerant workflow scheduling models a workflow as a directed acyclic graph whose edges carry task precedence and data dependencies, supporting dependency structure rather than run-wide state as the unit of scheduling and recovery.",
+      "source": "https://faculty.cc.gatech.edu/~lingliu/papers/2016/FaultTolerantWorkflow.pdf",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "toolmaze",
+      "kind": "reported",
+      "statement": "ToolMaze reports dynamic replanning and recovery as a distinct weakness of current tool-using agents, with implicit semantic failures and complex paths producing trial-and-error loops.",
+      "source": "https://arxiv.org/abs/2606.05806",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "reliabilitybench",
+      "kind": "reported",
+      "statement": "ReliabilityBench demonstrates the need for controlled tool and API fault injection with outcome-based evaluation rather than happy-path success alone.",
+      "source": "https://arxiv.org/abs/2601.06112",
+      "accessed": "2026-08-25"
+    }
+  ],
+  "counterevidence": [
+    {
+      "id": "hidden-dependency-challenge",
+      "kind": "observed",
+      "statement": "When one real dependency was hidden from the scheduler in each domain while the evaluator retained it as ground truth, scoped continuation crossed the hidden observability, authorization, provenance, and freshness boundary in all four cases. A dependency-scoped scheduler is not safe merely because it has a graph; its safety depends on the graph's completeness and the truth of its capability and barrier state.",
+      "source": "docs/research/evidence/scoped-progress-partial-failure/challenge-results.json",
+      "command": "python3 docs/research/evidence/scoped-progress-partial-failure/challenge.py --verify --write-results",
+      "resultHash": "sha256:2f3b80306c4ee421aacd387a4b37331f2751b53f31a1352b33938f887083a037"
+    },
+    {
+      "id": "stale-cached-state",
+      "kind": "reported",
+      "statement": "Cached state can become stale: static stability supports known existing behavior more strongly than novel actions based on unavailable state.",
+      "source": "https://aws.amazon.com/builders-library/static-stability-using-availability-zones/",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "untested-degradation-paths",
+      "kind": "reported",
+      "statement": "Rarely exercised degradation paths and naive retries can create new failure modes and cascading load; degraded behavior needs testing, monitoring, disable controls, and retry budgets.",
+      "source": "https://sre.google/sre-book/addressing-cascading-failures/",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "isolation-overhead",
+      "kind": "reported",
+      "statement": "Isolation carries real resource, performance, management and complexity cost and must follow meaningful boundaries rather than over-granular ones.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": "orchestration-cost",
+      "kind": "inferred",
+      "statement": "Partitioning work and maintaining checkpoints adds orchestration complexity and cost, and local work can become obsolete while remote state changes.",
+      "source": "docs/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure.md"
+    },
+    {
+      "id": "masked-blocked-objective",
+      "kind": "inferred",
+      "statement": "Continuing low-value work can hide the fact that the objective is blocked, and an outage can remove the evidence needed to tell whether work is safe.",
+      "source": "docs/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure.md"
+    },
+    {
+      "id": "transaction-wide-invariant",
+      "kind": "inferred",
+      "statement": "Transaction-wide invariants may legitimately require a global stop, and poorly bounded retries can prolong the failed dependency and cause a cascade.",
+      "source": "docs/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure.md"
+    }
+  ],
+  "caveats": [
+    "The primary result validates the internal mechanism only under complete declarations. It is not a reliability rate and does not show that an agent can infer a correct dependency graph.",
+    "The experiment is a deterministic local simulation with a planted unsafe control and contains no language model; the supporting transcript is a single purposive incident that required operator correction before safe work resumed.",
+    "The study explicitly declines promotion beyond candidate: the operational incident is singular and the experiment is a model, not a production reliability trial."
+  ],
+  "falsifier": {
+    "weakenedIf": [
+      "Under matched partial failures, frontier continuation produces no durable useful work.",
+      "Frontier continuation increases invalid or unauthorized effects.",
+      "Frontier continuation creates enough reconciliation and rework to erase its recovery advantage.",
+      "Agents cannot identify dependency uncertainty well enough to honor the stop boundary."
+    ],
+    "nextExperiment": "Run representative software-factory, SRE, and customer-support agents against a stateful fault-injection harness, comparing global halt, naive continuation, and scoped continuation under explicit timeouts, rate limits and permanent failures; silent partial or stale results; omitted and incorrect dependency declarations; loss of authority, observability and rollback; and restoration with remote-state drift."
+  },
+  "behavior": {
+    "targets": ["harness", "metaharness"],
+    "interface": "Represent each action with prerequisites, required capabilities, effect class, evidence freshness, and rollback or compensation state.",
+    "steps": [
+      "Record a typed capability-level blocker rather than only a run-level error.",
+      "Checkpoint completed evidence and effect receipts.",
+      "Compute the ready frontier deterministically outside the model.",
+      "Ask the model to choose only among permitted frontier actions.",
+      "Fail closed for consequential actions with unknown dependency confidence.",
+      "Use budgeted, event-driven recovery rather than retry polling.",
+      "Refresh external state and reconcile effects before releasing deferred actions."
+    ],
+    "minimalSlice": "A bounded harness or metaharness experiment, not a production change: declare the five per-action fields for one run, then compare scoped continuation against run-wide halt under an injected capability loss."
+  },
+  "evaluation": {
+    "measures": [
+      "Valid useful work during impairment.",
+      "Unauthorized or invalid effects.",
+      "Stale-state decisions.",
+      "Rework after restoration.",
+      "Recovery latency.",
+      "Retry load.",
+      "Total cost.",
+      "Operator interventions."
+    ],
+    "improvementSignal": "More durable useful work, or lower recovery latency, than global halt on the same injected failures.",
+    "regressionSignal": "Any increase in unauthorized effects, invalid state transitions, or evaluator escapes relative to global halt.",
+    "baseline": "Global halt, with naive continuation retained as a deliberately unsafe third arm so the evaluator's sensitivity is visible in the same run.",
+    "plantedControl": "Plant known-bad cases to verify the evaluator before trusting the result; a challenge that produces a clean result has failed to challenge the mechanism."
+  },
+  "effects": {
+    "safety": "Expected neutral, and gated as neutral: acceptance requires no increase in unauthorized effects, invalid state transitions, or evaluator escapes. The hidden-dependency challenge shows safety degrades whenever the declared graph is incomplete, so the expectation holds only where declarations are trustworthy.",
+    "quality": "Expected to improve where the continued work is durable and independently verifiable, and to degrade where continuation becomes busywork that masks a blocked objective. Not measured by this study.",
+    "latency": "Expected lower recovery latency and fewer post-recovery scheduling decisions; the simulation reduced post-recovery scheduling in every beneficial case, which is a model result rather than a measured agent result.",
+    "cost": "Expected higher orchestration cost from partitioning, checkpointing, and reconciliation, offset only where the continued work would otherwise have been repeated after restoration. Not measured by this study.",
+    "operatorAttention": "Expected lower, because a typed capability-level blocker replaces a run-wide yield that in the motivating incident needed operator correction to resume safe work. Observed once, in one transcript; not an estimated rate."
+  },
+  "rollout": {
+    "risks": [
+      "An incomplete or untrue dependency graph turns scoped continuation into unsafe continuation.",
+      "Rarely exercised degradation paths and unbudgeted retries can create new failure modes and cascading load.",
+      "Checkpointing and reconciliation add orchestration complexity and cost.",
+      "Continued local work can become obsolete while remote state changes."
+    ],
+    "compatibility": [
+      "The typed capability-level blocker is added beside the existing run-level error rather than replacing it (handoff step 1).",
+      "The ready frontier is computed deterministically outside the model, so this is a scheduler and state concern before it is a prompt concern (handoff step 3).",
+      "Recovery is budgeted and event-driven rather than retry polling, which constrains any existing retry loop (handoff step 6)."
+    ],
+    "conditions": [
+      "Actions carry declared prerequisites, capabilities, effect class, freshness, and rollback state before any frontier is computed.",
+      "The evaluator has been shown to fail on a planted unsafe case before its passing result is trusted.",
+      "Consequential actions with unknown dependency confidence fail closed."
+    ],
+    "rollback": "Return to run-wide halt if unauthorized effects, invalid state transitions, or evaluator escapes regress."
+  },
+  "returnPath": {
+    "originatingRun": "docs/research/2026-08-25T023000+0200_scoped-progress-under-partial-failure.md",
+    "recordOutcomeAs": "A dated note under docs/research/ recording the harness run identifier, model, harness and configuration version, the digest of the projected context document, and the measured values of this package's evaluation measures; its conclusion is then added to this package's evidence or counterevidence array with kind observed.",
+    "contradictionBecomes": "A counterevidence citation on this package plus a new research run. The originating run stays closed and the registry maturity moves only through a reviewable synthesis decision, never automatically from a product result."
+  }
+}

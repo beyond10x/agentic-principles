@@ -1,0 +1,33 @@
+{
+  "schema": "urn:beyond10x:agentic-principles:schema:registry:1",
+  "updated": "2026-08-25T02:37:37+02:00",
+  "principles": [
+    {
+      "id": "AP-901",
+      "title": "Planted seed with a complete transfer package",
+      "maturity": "seed",
+      "claim": "A seed with a well-formed, truthfully quoted transfer package must still be refused projection, or the maturity bar is decoration.",
+      "source": "/research/research/fixture",
+      "sourceLabel": "Gate-proof fixture",
+      "themes": ["fixture"]
+    },
+    {
+      "id": "AP-902",
+      "title": "Planted candidate with no transfer package",
+      "maturity": "candidate",
+      "claim": "A candidate without a transfer package must be refused, or the transfer-package requirement is decoration.",
+      "source": "/research/research/fixture",
+      "sourceLabel": "Gate-proof fixture",
+      "themes": ["fixture"]
+    },
+    {
+      "id": "AP-903",
+      "title": "Planted candidate whose package strengthens its claim",
+      "maturity": "candidate",
+      "claim": "A package whose claim statement is not a verbatim quotation of its cited study must be refused, or a projection can silently strengthen a claim.",
+      "source": "/research/research/fixture",
+      "sourceLabel": "Gate-proof fixture",
+      "themes": ["fixture"]
+    }
+  ]
+}
