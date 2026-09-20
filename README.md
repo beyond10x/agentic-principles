@@ -88,7 +88,7 @@ harness --context build/harness-context/AP-011.md
 The document's sha256 is the correlation key that ties a product result back to the research run
 behind it. Because a context layer is billed on every turn and compaction cannot reclaim it, the bar
 is deliberate rather than generous. See
-[Transfer packages](https://beyond10x.github.io/agentic-principles/research/transfer-packages).
+[Transfer packages](https://github.com/beyond10x/agentic-principles/tree/main/docs/transfer-packages).
 
 ## Publication
 
