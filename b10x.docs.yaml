@@ -49,8 +49,6 @@ surfaces:
     target: aep/docs
   - kind: informs
     target: harness/docs
-  - kind: informs
-    target: metaharness/docs
   routeBase: /docs/agentic-principles/
   sections:
   - kind: reference
