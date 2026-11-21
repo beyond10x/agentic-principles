@@ -4,6 +4,8 @@ Notable changes to Agentic Principles are recorded here.
 
 ## [Unreleased]
 
+## [v0.2.0] - 2026-11-22
+
 ### Changed
 
 - Mark the Atlas-derived historical seed as privately sourced, preserve its exact source locators
@@ -66,6 +68,7 @@ Notable changes to Agentic Principles are recorded here.
 - Dependabot coverage for npm and GitHub Actions, plus repository secret scanning and push
   protection.
 
-[Unreleased]: https://github.com/beyond10x/agentic-principles/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/beyond10x/agentic-principles/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/beyond10x/agentic-principles/compare/v0.1.1...v0.2.0
 [v0.1.1]: https://github.com/beyond10x/agentic-principles/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/beyond10x/agentic-principles/releases/tag/v0.1.0
